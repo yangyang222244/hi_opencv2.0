@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1075</width>
-    <height>568</height>
+    <width>1112</width>
+    <height>558</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,31 +16,91 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item alignment="Qt::AlignTop">
-     <widget class="QScrollArea" name="scrollArea">
+     <widget class="QToolBox" name="toolBox">
       <property name="minimumSize">
        <size>
-        <width>160</width>
+        <width>180</width>
         <height>400</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>160</width>
+        <width>180</width>
         <height>400</height>
        </size>
       </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_3">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page1">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>158</width>
-         <height>398</height>
+         <width>180</width>
+         <height>160</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>江南</string>
+       </property>
+       <attribute name="label">
+        <string>Smooth</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>160</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Form Conversion</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>160</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Histogram</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page">
+       <attribute name="label">
+        <string>Anamorphose</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <attribute name="label">
+        <string>Edge Detection</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <attribute name="label">
+        <string>Target Location</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_6">
+       <attribute name="label">
+        <string>Template Matching</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="page_7">
+       <attribute name="label">
+        <string>others</string>
+       </attribute>
       </widget>
      </widget>
     </item>
@@ -51,6 +111,15 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QScrollArea" name="input">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy">
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
@@ -59,8 +128,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>417</width>
-              <height>358</height>
+              <width>426</width>
+              <height>348</height>
              </rect>
             </property>
            </widget>
@@ -84,6 +153,9 @@
          </item>
          <item>
           <widget class="QScrollArea" name="output">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
@@ -92,8 +164,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>417</width>
-              <height>358</height>
+              <width>425</width>
+              <height>348</height>
              </rect>
             </property>
            </widget>
@@ -180,7 +252,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1075</width>
+     <width>1112</width>
      <height>26</height>
     </rect>
    </property>
@@ -238,4 +310,7 @@
   <include location="hi_opencv20.qrc"/>
  </resources>
  <connections/>
+ <slots>
+  <slot>open()</slot>
+ </slots>
 </ui>

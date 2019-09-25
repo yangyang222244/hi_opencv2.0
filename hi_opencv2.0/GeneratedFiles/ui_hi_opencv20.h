@@ -18,7 +18,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
@@ -40,11 +39,14 @@ public:
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout_2;
     QToolBox *toolBox;
-    QWidget *toolBoxPage1;
-    QPushButton *pushButton_2;
-    QWidget *toolBoxPage2;
-    QPushButton *pushButton;
-    QWidget *toolBoxPage3;
+    QWidget *page1;
+    QWidget *page_3;
+    QWidget *page_2;
+    QWidget *page;
+    QWidget *page_4;
+    QWidget *page_5;
+    QWidget *page_6;
+    QWidget *page_7;
     QVBoxLayout *verticalLayout_2;
     QWidget *horizontalWidget;
     QHBoxLayout *horizontalLayout;
@@ -69,7 +71,7 @@ public:
     {
         if (hi_opencv20Class->objectName().isEmpty())
             hi_opencv20Class->setObjectName(QStringLiteral("hi_opencv20Class"));
-        hi_opencv20Class->resize(1009, 498);
+        hi_opencv20Class->resize(1112, 558);
         actionopen = new QAction(hi_opencv20Class);
         actionopen->setObjectName(QStringLiteral("actionopen"));
         actionsave = new QAction(hi_opencv20Class);
@@ -86,27 +88,38 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         toolBox = new QToolBox(centralWidget);
         toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setMinimumSize(QSize(200, 400));
-        toolBox->setMaximumSize(QSize(200, 400));
-        toolBox->setFrameShape(QFrame::HLine);
-        toolBoxPage1 = new QWidget();
-        toolBoxPage1->setObjectName(QStringLiteral("toolBoxPage1"));
-        pushButton_2 = new QPushButton(toolBoxPage1);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(0, 0, 93, 28));
-        pushButton_2->setAutoFillBackground(false);
-        toolBox->addItem(toolBoxPage1, QStringLiteral(""));
-        toolBoxPage2 = new QWidget();
-        toolBoxPage2->setObjectName(QStringLiteral("toolBoxPage2"));
-        pushButton = new QPushButton(toolBoxPage2);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(0, 0, 93, 28));
-        toolBox->addItem(toolBoxPage2, QStringLiteral(""));
-        toolBoxPage3 = new QWidget();
-        toolBoxPage3->setObjectName(QStringLiteral("toolBoxPage3"));
-        toolBox->addItem(toolBoxPage3, QStringLiteral(""));
+        toolBox->setMinimumSize(QSize(180, 400));
+        toolBox->setMaximumSize(QSize(180, 400));
+        toolBox->setFrameShape(QFrame::NoFrame);
+        page1 = new QWidget();
+        page1->setObjectName(QStringLiteral("page1"));
+        page1->setGeometry(QRect(0, 0, 180, 160));
+        toolBox->addItem(page1, QStringLiteral("Smooth"));
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        page_3->setGeometry(QRect(0, 0, 180, 160));
+        toolBox->addItem(page_3, QStringLiteral("Form Conversion"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        page_2->setGeometry(QRect(0, 0, 180, 160));
+        toolBox->addItem(page_2, QStringLiteral("Histogram"));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        toolBox->addItem(page, QStringLiteral("Anamorphose"));
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        toolBox->addItem(page_4, QStringLiteral("Edge Detection"));
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        toolBox->addItem(page_5, QStringLiteral("Target Location"));
+        page_6 = new QWidget();
+        page_6->setObjectName(QStringLiteral("page_6"));
+        toolBox->addItem(page_6, QStringLiteral("Template Matching"));
+        page_7 = new QWidget();
+        page_7->setObjectName(QStringLiteral("page_7"));
+        toolBox->addItem(page_7, QStringLiteral("others"));
 
-        horizontalLayout_2->addWidget(toolBox);
+        horizontalLayout_2->addWidget(toolBox, 0, Qt::AlignTop);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
@@ -119,10 +132,13 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         input = new QScrollArea(horizontalWidget);
         input->setObjectName(QStringLiteral("input"));
+        input->setMouseTracking(true);
+        input->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        input->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 364, 288));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 426, 348));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -133,10 +149,11 @@ public:
 
         output = new QScrollArea(horizontalWidget);
         output->setObjectName(QStringLiteral("output"));
+        output->setMouseTracking(true);
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 364, 288));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 425, 348));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -185,7 +202,7 @@ public:
         hi_opencv20Class->setStatusBar(statusBar);
         menuBar = new QMenuBar(hi_opencv20Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1009, 26));
+        menuBar->setGeometry(QRect(0, 0, 1112, 26));
         menufile = new QMenu(menuBar);
         menufile->setObjectName(QStringLiteral("menufile"));
         menufile->setLayoutDirection(Qt::RightToLeft);
@@ -203,6 +220,9 @@ public:
 
         retranslateUi(hi_opencv20Class);
 
+        toolBox->setCurrentIndex(6);
+
+
         QMetaObject::connectSlotsByName(hi_opencv20Class);
     } // setupUi
 
@@ -214,16 +234,16 @@ public:
         actionopen_2->setText(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
         actionsave_2->setText(QApplication::translate("hi_opencv20Class", "save", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        toolBox->setToolTip(QApplication::translate("hi_opencv20Class", "<html><head/><body><p>123</p></body></html>", Q_NULLPTR));
+        page1->setToolTip(QApplication::translate("hi_opencv20Class", "\346\261\237\345\215\227", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-#ifndef QT_NO_WHATSTHIS
-        toolBox->setWhatsThis(QApplication::translate("hi_opencv20Class", "<html><head/><body><p>123</p></body></html>", Q_NULLPTR));
-#endif // QT_NO_WHATSTHIS
-        pushButton_2->setText(QApplication::translate("hi_opencv20Class", "PushButton", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(toolBoxPage1), QString());
-        pushButton->setText(QApplication::translate("hi_opencv20Class", "PushButton", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(toolBoxPage2), QString());
-        toolBox->setItemText(toolBox->indexOf(toolBoxPage3), QString());
+        toolBox->setItemText(toolBox->indexOf(page1), QApplication::translate("hi_opencv20Class", "Smooth", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("hi_opencv20Class", "Form Conversion", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("hi_opencv20Class", "Histogram", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("hi_opencv20Class", "Anamorphose", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("hi_opencv20Class", "Edge Detection", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("hi_opencv20Class", "Target Location", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("hi_opencv20Class", "Template Matching", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "others", Q_NULLPTR));
         menufile->setTitle(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
         menusave->setTitle(QApplication::translate("hi_opencv20Class", "save", Q_NULLPTR));
         menuexit->setTitle(QApplication::translate("hi_opencv20Class", "exit", Q_NULLPTR));
