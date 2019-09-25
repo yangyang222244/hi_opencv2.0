@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1112</width>
-    <height>558</height>
+    <width>1072</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item alignment="Qt::AlignTop">
+    <item>
      <widget class="QToolBox" name="toolBox">
       <property name="minimumSize">
        <size>
@@ -41,7 +41,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>160</height>
+         <height>192</height>
         </rect>
        </property>
        <property name="toolTip">
@@ -50,6 +50,46 @@
        <attribute name="label">
         <string>Smooth</string>
        </attribute>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>101</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Blur</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>Gaussian</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="text">
+            <string>Median</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_4">
+           <property name="text">
+            <string>Bilateral</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_3">
        <property name="geometry">
@@ -57,7 +97,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>160</height>
+         <height>192</height>
         </rect>
        </property>
        <attribute name="label">
@@ -70,7 +110,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>160</height>
+         <height>192</height>
         </rect>
        </property>
        <attribute name="label">
@@ -78,26 +118,66 @@
        </attribute>
       </widget>
       <widget class="QWidget" name="page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>192</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Anamorphose</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>192</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Edge Detection</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_5">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>192</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Target Location</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_6">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>192</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Template Matching</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_7">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>192</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>others</string>
        </attribute>
@@ -128,8 +208,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>426</width>
-              <height>348</height>
+              <width>411</width>
+              <height>383</height>
              </rect>
             </property>
            </widget>
@@ -164,8 +244,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>425</width>
-              <height>348</height>
+              <width>411</width>
+              <height>383</height>
              </rect>
             </property>
            </widget>
@@ -207,8 +287,17 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::NoTicks</enum>
            </property>
           </widget>
          </item>
@@ -225,6 +314,12 @@
              <width>300</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>1</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -252,8 +347,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1112</width>
-     <height>26</height>
+     <width>1072</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -263,6 +358,7 @@
     <property name="title">
      <string>open</string>
     </property>
+    <addaction name="action1_4"/>
    </widget>
    <widget class="QMenu" name="menusave">
     <property name="layoutDirection">
@@ -304,13 +400,152 @@
     <string>save</string>
    </property>
   </action>
+  <action name="action1">
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action1_2">
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action1_3">
+   <property name="text">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="action1_4">
+   <property name="text">
+    <string>open</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="hi_opencv20.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_blur()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>67</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>-10</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_gaussian()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>-2</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_median()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>-8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_Bilateral()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>55</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>531</x>
+     <y>-3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action1_4</sender>
+   <signal>triggered()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>482</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_1</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_slider_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>492</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>767</x>
+     <y>-7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_slider_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>645</x>
+     <y>509</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>844</x>
+     <y>-16</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>open()</slot>
+  <slot>on_blur()</slot>
+  <slot>on_gaussian()</slot>
+  <slot>on_median()</slot>
+  <slot>on_Bilateral()</slot>
+  <slot>on_slider_1()</slot>
+  <slot>on_slider_2()</slot>
  </slots>
 </ui>
