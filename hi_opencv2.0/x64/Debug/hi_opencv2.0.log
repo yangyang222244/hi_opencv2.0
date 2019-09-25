@@ -1,0 +1,9 @@
+﻿  Uic'ing hi_opencv20.ui...
+  Rcc'ing hi_opencv20.qrc...
+  Moc'ing hi_opencv20.h...
+   RCC: Warning: No resources in 'E:\杩涘嚮\opencv鍒嗙被\hi_opencv2.0\hi_opencv2.0\hi_opencv20.qrc'.
+  hi_opencv20.cpp
+  main.cpp
+  qrc_hi_opencv20.cpp
+  moc_hi_opencv20.cpp
+  hi_opencv2.0.vcxproj -> E:\进击\opencv分类\hi_opencv2.0\x64\Debug\hi_opencv2.0.exe
