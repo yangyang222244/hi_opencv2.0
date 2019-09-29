@@ -182,7 +182,7 @@ void hi_opencv20::on_slider_1()
 		rot_mat = getRotationMatrix2D(center, angle, 1);
 
 		/// Ðý×ªÒÑÅ¤ÇúÍ¼Ïñ
-		warpAffine(image1, image1, rot_mat, image1.size());
+		warpAffine(image, image1, rot_mat, image1.size());
 		break;
 	}
 
@@ -361,10 +361,8 @@ void hi_opencv20::on_scale()
 void hi_opencv20::on_rotate()
 {
 	i = 42;
-	if (image1.empty())
-	{
-		image1 = image.clone();
-	}
+
+	image1 = image.clone();
 	ui.slider_1->setMinimum(-180);
 	ui.slider_1->setMaximum(180);
 	ui.slider_1->setValue(0);
