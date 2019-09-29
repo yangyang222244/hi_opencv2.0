@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1072</width>
-    <height>564</height>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page1">
        <property name="geometry">
@@ -50,7 +50,7 @@
        <attribute name="label">
         <string>Smooth</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -101,8 +101,99 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>Form Conversion</string>
+        <string>形态变换</string>
        </attribute>
+       <widget class="QPushButton" name="btnErode">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>腐蚀变换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnDilate">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>膨胀变换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnOpening">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>开运算</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnClosing">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>90</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>闭运算</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnMG">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>形态梯度</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnTopHat">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>150</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>顶帽</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnBlackHat">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>180</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>黑帽</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_2">
        <property name="geometry">
@@ -127,8 +218,73 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>Anamorphose</string>
+        <string>图像变形</string>
        </attribute>
+       <widget class="QPushButton" name="btnScale">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>放缩</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnRotate">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>旋转</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnL2R">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>水平置换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnT2D">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>90</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>垂直置换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnpyr">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>图像金字塔</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_4">
        <property name="geometry">
@@ -209,7 +365,7 @@
               <x>0</x>
               <y>0</y>
               <width>411</width>
-              <height>383</height>
+              <height>440</height>
              </rect>
             </property>
            </widget>
@@ -245,7 +401,7 @@
               <x>0</x>
               <y>0</y>
               <width>411</width>
-              <height>383</height>
+              <height>440</height>
              </rect>
             </property>
            </widget>
@@ -433,12 +589,12 @@
    <slot>on_blur()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>67</x>
-     <y>139</y>
+     <x>76</x>
+     <y>187</y>
     </hint>
     <hint type="destinationlabel">
      <x>272</x>
-     <y>-10</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -449,12 +605,12 @@
    <slot>on_gaussian()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>178</y>
+     <x>55</x>
+     <y>227</y>
     </hint>
     <hint type="destinationlabel">
      <x>322</x>
-     <y>-2</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -465,12 +621,12 @@
    <slot>on_median()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>220</y>
+     <x>80</x>
+     <y>267</y>
     </hint>
     <hint type="destinationlabel">
      <x>441</x>
-     <y>-8</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -481,12 +637,12 @@
    <slot>on_Bilateral()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>252</y>
+     <x>64</x>
+     <y>307</y>
     </hint>
     <hint type="destinationlabel">
      <x>531</x>
-     <y>-3</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -513,12 +669,12 @@
    <slot>on_slider_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>591</x>
-     <y>492</y>
+     <x>778</x>
+     <y>554</y>
     </hint>
     <hint type="destinationlabel">
      <x>767</x>
-     <y>-7</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -529,12 +685,204 @@
    <slot>on_slider_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>645</x>
-     <y>509</y>
+     <x>778</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>844</x>
-     <y>-16</y>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnErode</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_erode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-80</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnDilate</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_dilate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>60</x>
+     <y>210</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-94</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnOpening</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_opening()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>241</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-106</x>
+     <y>237</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnClosing</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_closing()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>263</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-39</x>
+     <y>270</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnMG</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_MG()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-135</x>
+     <y>288</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTopHat</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_tophat()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>42</x>
+     <y>328</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-104</x>
+     <y>326</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnBlackHat</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_blackhat()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-86</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnScale</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_scale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-78</x>
+     <y>145</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnRotate</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_rotate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>79</x>
+     <y>263</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-118</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnL2R</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_L2R()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-92</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnT2D</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_T2D()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-86</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnpyr</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_pyr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>354</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-138</x>
+     <y>576</y>
     </hint>
    </hints>
   </connection>
@@ -547,5 +895,17 @@
   <slot>on_Bilateral()</slot>
   <slot>on_slider_1()</slot>
   <slot>on_slider_2()</slot>
+  <slot>on_erode()</slot>
+  <slot>on_dilate()</slot>
+  <slot>on_opening()</slot>
+  <slot>on_closing()</slot>
+  <slot>on_MG()</slot>
+  <slot>on_tophat()</slot>
+  <slot>on_blackhat()</slot>
+  <slot>on_scale()</slot>
+  <slot>on_rotate()</slot>
+  <slot>on_L2R()</slot>
+  <slot>on_T2D()</slot>
+  <slot>on_pyr()</slot>
  </slots>
 </ui>

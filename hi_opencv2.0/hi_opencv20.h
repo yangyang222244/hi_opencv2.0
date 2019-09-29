@@ -33,6 +33,7 @@ public:
 
 private slots:
 	void open();
+
 	void on_blur();
 	void on_gaussian();
 	void on_median();
@@ -40,8 +41,29 @@ private slots:
 
 	void on_slider_1();
 	void on_slider_2();
+
+	//形态变换
+	void on_erode();
+	void on_dilate();
+	void on_opening();
+	void on_closing();
+	void on_MG();
+	void on_blackhat();
+	void on_tophat();
+
+	//图像变形
+	void on_scale();
+	void on_rotate();
+	void on_L2R();
+	void on_T2D();
+	void on_pyr();
+
+
+
+
+
 private:
 	Ui::hi_opencv20Class ui;
-	Mat image,image1, iamge2;
+	Mat image,image1, image2;
 	QLabel *label, *label_2;
 };
