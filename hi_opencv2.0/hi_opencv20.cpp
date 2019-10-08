@@ -15,6 +15,8 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 
 	ui.slider_1->hide();
 	ui.slider_2->hide();
+	ui.spinBox_1->hide();
+	ui.spinBox_2->hide();
 }
 
 int hi_opencv20::image_fit(Mat a, double m, double n)
