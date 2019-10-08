@@ -33,7 +33,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="page1">
        <property name="geometry">
@@ -296,8 +296,86 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>Edge Detection</string>
+        <string>边缘检测</string>
        </attribute>
+       <widget class="QPushButton" name="btnScale_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sobel导数</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnScale_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Laplace算子</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnScale_4">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Canny边缘检测</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnScale_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>90</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>霍夫线变换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnScale_7">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>120</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>霍夫圆变换</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnScale_8">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>150</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>图像轮廓</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_5">
        <property name="geometry">
@@ -365,7 +443,7 @@
               <x>0</x>
               <y>0</y>
               <width>411</width>
-              <height>440</height>
+              <height>434</height>
              </rect>
             </property>
            </widget>
@@ -401,7 +479,7 @@
               <x>0</x>
               <y>0</y>
               <width>411</width>
-              <height>440</height>
+              <height>434</height>
              </rect>
             </property>
            </widget>
@@ -670,7 +748,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>778</x>
-     <y>554</y>
+     <y>551</y>
     </hint>
     <hint type="destinationlabel">
      <x>767</x>
