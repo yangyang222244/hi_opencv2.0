@@ -73,8 +73,6 @@ void hi_opencv20::open()
 
 }
 
-
-
 void hi_opencv20::on_slider_1()
 {
 	switch (i)
@@ -464,4 +462,25 @@ void hi_opencv20::on_pyr()
 }
 
 #pragma endregion
+
+//±ßÔµ¼ì²âby WFL
+void hi_opencv20::on_Sobel(){
+
+
+}
+void hi_opencv20::on_Laplace() {
+
+}
+void hi_opencv20::on_Canny() {
+
+}
+void hi_opencv20::on_HoughLines() {
+
+}
+void hi_opencv20::on_HoughCircles() {
+
+}
+void hi_opencv20::on_findContours() {
+
+}
 
