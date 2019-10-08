@@ -964,6 +964,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnScale_2</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_Sobel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>107</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnScale_3</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_Laplace()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>76</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-7</x>
+     <y>94</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnScale_4</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_Canny()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>323</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-11</x>
+     <y>165</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>open()</slot>
@@ -985,5 +1033,8 @@
   <slot>on_L2R()</slot>
   <slot>on_T2D()</slot>
   <slot>on_pyr()</slot>
+  <slot>on_Sobel()</slot>
+  <slot>on_Laplace()</slot>
+  <slot>on_Canny()</slot>
  </slots>
 </ui>

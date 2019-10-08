@@ -1,4 +1,12 @@
 #include "hi_opencv20.h"
+#pragma region //函数声明by WFL
+void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+#pragma endregion
 
 hi_opencv20::hi_opencv20(QWidget *parent)
 	: QMainWindow(parent)
@@ -75,6 +83,7 @@ void hi_opencv20::open()
 
 void hi_opencv20::on_slider_1()
 {
+	int change = 0;
 	switch (i)
 	{
 	case 1:
@@ -183,6 +192,45 @@ void hi_opencv20::on_slider_1()
 		warpAffine(image, image1, rot_mat, image1.size());
 		break;
 	}
+#pragma endregion
+
+#pragma region //边缘检测
+	case 51:
+	{
+		change = 1;
+		i_by =(int)ui.slider_1->value();
+		Sobel(i_by, image, image1, label_2, ui);
+	}
+	case 52:
+	{
+		change = 1;
+		i_by = (int)ui.slider_1->value();
+		Laplace(i_by, image, image1, label_2, ui);
+	}
+	case 53:
+	{
+		change = 1;
+		i_by = (int)ui.slider_1->value();
+		Canny(i_by, image, image1, label_2, ui);
+	}
+	case 54:
+	{
+		change = 1;
+		i_by = (int)ui.slider_1->value();
+		HoughLines(i_by, image, image1, label_2, ui);
+	}
+	case 55:
+	{
+		change = 1;
+		i_by = (int)ui.slider_1->value();
+		HoughCircles(i_by, image, image1, label_2, ui);
+	}
+	case 56:
+	{
+		change = 1;
+		i_by = (int)ui.slider_1->value();
+		findContours(i_by, image, image1, label_2, ui);
+	}
 
 #pragma endregion
 
@@ -190,11 +238,13 @@ void hi_opencv20::on_slider_1()
 	default:
 		break;
 	}
+	if (change == 0) {
 		QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
 		label_2 = new QLabel();
 		label_2->setPixmap(QPixmap::fromImage(img));
 		label_2->resize(QSize(img.width(), img.height()));
 		ui.output->setWidget(label_2);
+	}
 }
 
 void hi_opencv20::on_slider_2()
@@ -463,24 +513,218 @@ void hi_opencv20::on_pyr()
 
 #pragma endregion
 
-//边缘检测by WFL
-void hi_opencv20::on_Sobel(){
-
-
+#pragma region//边缘检测by WFL
+void hi_opencv20::on_Sobel() {
+	i = 51;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+	Sobel(i_by,image,image1,label_2,ui);
 }
 void hi_opencv20::on_Laplace() {
-
+	i = 52;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+    Laplace(i_by,image,image1,label_2,ui);
 }
 void hi_opencv20::on_Canny() {
-
+	i = 53;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+	Canny(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_HoughLines() {
-
+	i = 54;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+	HoughLines(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_HoughCircles() {
-
+	i = 55;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+	HoughCircles(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_findContours() {
-
+	i = 56;
+	ui.slider_1->setMinimum(1);
+	ui.slider_1->setMaximum(50);
+	ui.slider_1->setValue(1);
+	ui.slider_1->show();
+	findContours(i_by, image, image1, label_2, ui);
 }
+void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat img1, src_gray, grad;
+	GaussianBlur(image, img1, Size(3, 3), 0, 0, BORDER_DEFAULT);//对原图像进行降噪；
+	cvtColor(img1, src_gray, COLOR_BGR2GRAY);
+	Mat grad_x, grad_y;
+	int scale = 1;
+	int delta = 0;
+	int ddepth = CV_16S;
+	Mat abs_grad_x, abs_grad_y;
+	/// 求 X方向梯度
+	Sobel(src_gray, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+	/// 求 Y方向梯度
+	Sobel(src_gray, grad_y, ddepth, 0, 1, 3, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(grad_x, abs_grad_x);
+	convertScaleAbs(grad_y, abs_grad_y);
+	addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, grad);
+	image1 = grad;
+	cvtColor(image1, image1, COLOR_GRAY2BGR);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat src, src_gray, dst;
+	int kernel_size = 3;
+	int scale = by;
+	int delta = 0;
+	int ddepth = CV_16S;
+	int c;
+	src = image;
+	/// 使用高斯滤波消除噪声
+	GaussianBlur(src, src, Size(3, 3), 0, 0, BORDER_DEFAULT);
+	/// 转换为灰度图
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
+	/// 使用Laplace函数
+	Mat abs_dst;
+	Laplacian(src_gray, dst, ddepth, kernel_size, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(dst, abs_dst);
+	image1 = abs_dst;
+	cvtColor(image1, image1, COLOR_GRAY2BGR);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat src, src_gray;
+	Mat dst, detected_edges;
+	int edgeThresh = 1;
+	int lowThreshold;
+	int const max_lowThreshold = 100;
+	int ratio = 3;
+	int kernel_size = 3;
+	src = image;
+	dst.create(src.size(), src.type());
+	/// 原图像转换为灰度图像
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
+	blur(src_gray, detected_edges, Size(3, 3));
+	lowThreshold = by;
+	/// 运行Canny算子
+	Canny(detected_edges, detected_edges, lowThreshold, lowThreshold*ratio, kernel_size);
+	/// 使用 Canny算子输出边缘作为掩码显示原图像
+	dst = Scalar::all(0);
+	src.copyTo(dst, detected_edges);
+	image1 = dst;
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat src, src_gray;
+	Mat dst, cdst;
 
+	src = image;
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
+	Canny(src_gray, dst, by, 200, 3);
+	cvtColor(dst, cdst, COLOR_GRAY2BGR);
+	vector<Vec4i> lines;
+	HoughLinesP(dst, lines, 1, CV_PI / 180, 50, 50, 10);
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		Vec4i l = lines[i];
+		line(cdst, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 3, LINE_AA);
+	}
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat src, src_gray;
+	//i_by = atoi(ui.lineEdit31->text().toStdString().c_str());
+	src = image;
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
+
+	//GaussianBlur(src_gray, src_gray, Size(9, 9), 2, 2);
+
+	vector<Vec3f> circles;
+
+	/// Apply the Hough Transform to find the circles
+	HoughCircles(src_gray, circles, HOUGH_GRADIENT, 1, src_gray.rows / 8, by, 100, 0, 0);
+
+	for (int i = 0; i < circles.size(); i++)
+	{
+		Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+		int radius = cvRound(circles[i][2]);
+		// circle center
+		circle(src, center, 3, Scalar(0, 255, 0), -1, 8, 0);
+		// circle outline
+		circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
+	}
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	Mat src, src_gray, canny_output;
+	RNG rng(12345);
+	src = image;
+	/// 原图像转换为灰度图像
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);;
+	/// 运行Canny算子
+	Canny(src_gray, canny_output, by, 200, 3);
+
+	/// 使用 Canny算子输出边缘作为掩码显示原图像
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+	findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	//计算矩：
+	vector<Moments> mu(contours.size());
+	for (int i = 0; i < contours.size(); i++)
+	{
+		mu[i] = moments(contours[i], false);
+	}
+
+	///  计算中心矩:
+	vector<Point2f> mc(contours.size());
+	for (int i = 0; i < contours.size(); i++)
+	{
+		mc[i] = Point2f(mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00);
+	}
+
+	/// 绘出轮廓
+	Mat drawing = Mat::zeros(canny_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
+		circle(drawing, mc[i], 4, color, -1, 8, 0);
+	}
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+#pragma endregion

@@ -73,4 +73,6 @@ private:
 	Ui::hi_opencv20Class ui;
 	Mat image,image1, image2;
 	QLabel *label, *label_2;
+	//±ßÔµ¼ì²âÄ¬ÈÏ²ÎÊı
+	int i_by=3;
 };

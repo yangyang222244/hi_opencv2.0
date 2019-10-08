@@ -67,6 +67,12 @@ public:
     QPushButton *btnT2D;
     QPushButton *btnpyr;
     QWidget *page_4;
+    QPushButton *btnScale_2;
+    QPushButton *btnScale_3;
+    QPushButton *btnScale_4;
+    QPushButton *btnScale_5;
+    QPushButton *btnScale_7;
+    QPushButton *btnScale_8;
     QWidget *page_5;
     QWidget *page_6;
     QWidget *page_7;
@@ -205,7 +211,25 @@ public:
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
         page_4->setGeometry(QRect(0, 0, 180, 192));
-        toolBox->addItem(page_4, QStringLiteral("Edge Detection"));
+        btnScale_2 = new QPushButton(page_4);
+        btnScale_2->setObjectName(QStringLiteral("btnScale_2"));
+        btnScale_2->setGeometry(QRect(0, 0, 181, 23));
+        btnScale_3 = new QPushButton(page_4);
+        btnScale_3->setObjectName(QStringLiteral("btnScale_3"));
+        btnScale_3->setGeometry(QRect(0, 30, 181, 23));
+        btnScale_4 = new QPushButton(page_4);
+        btnScale_4->setObjectName(QStringLiteral("btnScale_4"));
+        btnScale_4->setGeometry(QRect(0, 60, 181, 23));
+        btnScale_5 = new QPushButton(page_4);
+        btnScale_5->setObjectName(QStringLiteral("btnScale_5"));
+        btnScale_5->setGeometry(QRect(0, 90, 181, 23));
+        btnScale_7 = new QPushButton(page_4);
+        btnScale_7->setObjectName(QStringLiteral("btnScale_7"));
+        btnScale_7->setGeometry(QRect(0, 120, 181, 23));
+        btnScale_8 = new QPushButton(page_4);
+        btnScale_8->setObjectName(QStringLiteral("btnScale_8"));
+        btnScale_8->setGeometry(QRect(0, 150, 181, 23));
+        toolBox->addItem(page_4, QString::fromUtf8("\350\276\271\347\274\230\346\243\200\346\265\213"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
         page_5->setGeometry(QRect(0, 0, 180, 192));
@@ -238,7 +262,7 @@ public:
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 411, 440));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 411, 434));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -253,7 +277,7 @@ public:
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 411, 440));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 411, 434));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -344,8 +368,11 @@ public:
         QObject::connect(btnL2R, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_L2R()));
         QObject::connect(btnT2D, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_T2D()));
         QObject::connect(btnpyr, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_pyr()));
+        QObject::connect(btnScale_2, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_Sobel()));
+        QObject::connect(btnScale_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_Laplace()));
+        QObject::connect(btnScale_4, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_Canny()));
 
-        toolBox->setCurrentIndex(3);
+        toolBox->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);
@@ -385,7 +412,13 @@ public:
         btnT2D->setText(QApplication::translate("hi_opencv20Class", "\345\236\202\347\233\264\347\275\256\346\215\242", Q_NULLPTR));
         btnpyr->setText(QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\351\207\221\345\255\227\345\241\224", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\345\217\230\345\275\242", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("hi_opencv20Class", "Edge Detection", Q_NULLPTR));
+        btnScale_2->setText(QApplication::translate("hi_opencv20Class", "Sobel\345\257\274\346\225\260", Q_NULLPTR));
+        btnScale_3->setText(QApplication::translate("hi_opencv20Class", "Laplace\347\256\227\345\255\220", Q_NULLPTR));
+        btnScale_4->setText(QApplication::translate("hi_opencv20Class", "Canny\350\276\271\347\274\230\346\243\200\346\265\213", Q_NULLPTR));
+        btnScale_5->setText(QApplication::translate("hi_opencv20Class", "\351\234\215\345\244\253\347\272\277\345\217\230\346\215\242", Q_NULLPTR));
+        btnScale_7->setText(QApplication::translate("hi_opencv20Class", "\351\234\215\345\244\253\345\234\206\345\217\230\346\215\242", Q_NULLPTR));
+        btnScale_8->setText(QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\350\275\256\345\273\223", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("hi_opencv20Class", "\350\276\271\347\274\230\346\243\200\346\265\213", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("hi_opencv20Class", "Target Location", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("hi_opencv20Class", "Template Matching", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "others", Q_NULLPTR));
