@@ -58,6 +58,13 @@ private slots:
 	void on_T2D();
 	void on_pyr();
 
+	//±ßÔµ¼ì²â
+	void on_Sobel();
+	void on_Laplace();
+	void on_Canny();
+	void on_HoughLines();
+	void on_HoughCircles();
+	void on_findContours();
 
 
 

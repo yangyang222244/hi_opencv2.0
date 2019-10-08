@@ -7,6 +7,8 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 
 	ui.slider_1->hide();
 	ui.slider_2->hide();
+	ui.spinBox_1->hide();
+	ui.spinBox_2->hide();
 }
 
 int hi_opencv20::image_fit(Mat a, double m, double n)
@@ -72,8 +74,6 @@ void hi_opencv20::open()
 
 
 }
-
-
 
 void hi_opencv20::on_slider_1()
 {
@@ -464,4 +464,25 @@ void hi_opencv20::on_pyr()
 }
 
 #pragma endregion
+
+//±ßÔµ¼ì²âby WFL
+void hi_opencv20::on_Sobel(){
+
+
+}
+void hi_opencv20::on_Laplace() {
+
+}
+void hi_opencv20::on_Canny() {
+
+}
+void hi_opencv20::on_HoughLines() {
+
+}
+void hi_opencv20::on_HoughCircles() {
+
+}
+void hi_opencv20::on_findContours() {
+
+}
 

@@ -16,12 +16,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolBox>
@@ -60,6 +59,9 @@ public:
     QPushButton *btnTopHat;
     QPushButton *btnBlackHat;
     QWidget *page_2;
+    QPushButton *pushButton_zhi_1;
+    QPushButton *pushButton_zhi_2;
+    QPushButton *pushButton_zhi_3;
     QWidget *page;
     QPushButton *btnScale;
     QPushButton *btnRotate;
@@ -67,6 +69,12 @@ public:
     QPushButton *btnT2D;
     QPushButton *btnpyr;
     QWidget *page_4;
+    QPushButton *btnScale_2;
+    QPushButton *btnScale_3;
+    QPushButton *btnScale_4;
+    QPushButton *btnScale_5;
+    QPushButton *btnScale_7;
+    QPushButton *btnScale_8;
     QWidget *page_5;
     QWidget *page_6;
     QWidget *page_7;
@@ -81,14 +89,16 @@ public:
     QSpacerItem *verticalSpacer;
     QWidget *verticalWidget;
     QVBoxLayout *verticalLayout;
+    QWidget *horizontalWidget1;
+    QHBoxLayout *horizontalLayout_4;
+    QSpinBox *spinBox_1;
     QSlider *slider_1;
+    QWidget *horizontalWidget_2;
+    QHBoxLayout *horizontalLayout_5;
+    QSpinBox *spinBox_2;
     QSlider *slider_2;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
-    QMenuBar *menuBar;
-    QMenu *menufile;
-    QMenu *menusave;
-    QMenu *menuexit;
 
     void setupUi(QMainWindow *hi_opencv20Class)
     {
@@ -119,12 +129,12 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         toolBox = new QToolBox(centralWidget);
         toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setMinimumSize(QSize(180, 400));
-        toolBox->setMaximumSize(QSize(180, 400));
+        toolBox->setMinimumSize(QSize(180, 450));
+        toolBox->setMaximumSize(QSize(180, 450));
         toolBox->setFrameShape(QFrame::NoFrame);
         page1 = new QWidget();
         page1->setObjectName(QStringLiteral("page1"));
-        page1->setGeometry(QRect(0, 0, 180, 192));
+        page1->setGeometry(QRect(0, 0, 180, 210));
         layoutWidget = new QWidget(page1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(0, 10, 101, 171));
@@ -156,7 +166,7 @@ public:
         toolBox->addItem(page1, QStringLiteral("Smooth"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 180, 192));
+        page_3->setGeometry(QRect(0, 0, 180, 210));
         btnErode = new QPushButton(page_3);
         btnErode->setObjectName(QStringLiteral("btnErode"));
         btnErode->setGeometry(QRect(0, 0, 181, 23));
@@ -181,11 +191,20 @@ public:
         toolBox->addItem(page_3, QString::fromUtf8("\345\275\242\346\200\201\345\217\230\346\215\242"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 180, 192));
-        toolBox->addItem(page_2, QStringLiteral("Histogram"));
+        page_2->setGeometry(QRect(0, 0, 180, 210));
+        pushButton_zhi_1 = new QPushButton(page_2);
+        pushButton_zhi_1->setObjectName(QStringLiteral("pushButton_zhi_1"));
+        pushButton_zhi_1->setGeometry(QRect(0, 20, 181, 28));
+        pushButton_zhi_2 = new QPushButton(page_2);
+        pushButton_zhi_2->setObjectName(QStringLiteral("pushButton_zhi_2"));
+        pushButton_zhi_2->setGeometry(QRect(0, 60, 181, 28));
+        pushButton_zhi_3 = new QPushButton(page_2);
+        pushButton_zhi_3->setObjectName(QStringLiteral("pushButton_zhi_3"));
+        pushButton_zhi_3->setGeometry(QRect(0, 100, 181, 28));
+        toolBox->addItem(page_2, QString::fromUtf8("\347\233\264\346\226\271\345\233\276"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 180, 192));
+        page->setGeometry(QRect(0, 0, 180, 210));
         btnScale = new QPushButton(page);
         btnScale->setObjectName(QStringLiteral("btnScale"));
         btnScale->setGeometry(QRect(0, 0, 181, 23));
@@ -204,19 +223,37 @@ public:
         toolBox->addItem(page, QString::fromUtf8("\345\233\276\345\203\217\345\217\230\345\275\242"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 180, 192));
-        toolBox->addItem(page_4, QStringLiteral("Edge Detection"));
+        page_4->setGeometry(QRect(0, 0, 180, 210));
+        btnScale_2 = new QPushButton(page_4);
+        btnScale_2->setObjectName(QStringLiteral("btnScale_2"));
+        btnScale_2->setGeometry(QRect(0, 0, 181, 23));
+        btnScale_3 = new QPushButton(page_4);
+        btnScale_3->setObjectName(QStringLiteral("btnScale_3"));
+        btnScale_3->setGeometry(QRect(0, 30, 181, 23));
+        btnScale_4 = new QPushButton(page_4);
+        btnScale_4->setObjectName(QStringLiteral("btnScale_4"));
+        btnScale_4->setGeometry(QRect(0, 60, 181, 23));
+        btnScale_5 = new QPushButton(page_4);
+        btnScale_5->setObjectName(QStringLiteral("btnScale_5"));
+        btnScale_5->setGeometry(QRect(0, 90, 181, 23));
+        btnScale_7 = new QPushButton(page_4);
+        btnScale_7->setObjectName(QStringLiteral("btnScale_7"));
+        btnScale_7->setGeometry(QRect(0, 120, 181, 23));
+        btnScale_8 = new QPushButton(page_4);
+        btnScale_8->setObjectName(QStringLiteral("btnScale_8"));
+        btnScale_8->setGeometry(QRect(0, 150, 181, 23));
+        toolBox->addItem(page_4, QString::fromUtf8("\350\276\271\347\274\230\346\243\200\346\265\213"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 180, 192));
+        page_5->setGeometry(QRect(0, 0, 180, 210));
         toolBox->addItem(page_5, QStringLiteral("Target Location"));
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 180, 192));
+        page_6->setGeometry(QRect(0, 0, 180, 210));
         toolBox->addItem(page_6, QStringLiteral("Template Matching"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
-        page_7->setGeometry(QRect(0, 0, 180, 192));
+        page_7->setGeometry(QRect(0, 0, 180, 210));
         toolBox->addItem(page_7, QStringLiteral("others"));
 
         horizontalLayout_2->addWidget(toolBox);
@@ -238,7 +275,7 @@ public:
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 411, 440));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 406, 382));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -253,7 +290,7 @@ public:
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 411, 440));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 405, 382));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -271,7 +308,21 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        slider_1 = new QSlider(verticalWidget);
+        horizontalWidget1 = new QWidget(verticalWidget);
+        horizontalWidget1->setObjectName(QStringLiteral("horizontalWidget1"));
+        horizontalWidget1->setMaximumSize(QSize(600, 16777215));
+        horizontalLayout_4 = new QHBoxLayout(horizontalWidget1);
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        spinBox_1 = new QSpinBox(horizontalWidget1);
+        spinBox_1->setObjectName(QStringLiteral("spinBox_1"));
+        spinBox_1->setMinimumSize(QSize(60, 20));
+        spinBox_1->setMaximumSize(QSize(60, 20));
+
+        horizontalLayout_4->addWidget(spinBox_1);
+
+        slider_1 = new QSlider(horizontalWidget1);
         slider_1->setObjectName(QStringLiteral("slider_1"));
         slider_1->setMinimumSize(QSize(300, 0));
         slider_1->setMaximumSize(QSize(300, 16777215));
@@ -280,9 +331,26 @@ public:
         slider_1->setOrientation(Qt::Horizontal);
         slider_1->setTickPosition(QSlider::NoTicks);
 
-        verticalLayout->addWidget(slider_1, 0, Qt::AlignHCenter);
+        horizontalLayout_4->addWidget(slider_1);
 
-        slider_2 = new QSlider(verticalWidget);
+
+        verticalLayout->addWidget(horizontalWidget1, 0, Qt::AlignHCenter);
+
+        horizontalWidget_2 = new QWidget(verticalWidget);
+        horizontalWidget_2->setObjectName(QStringLiteral("horizontalWidget_2"));
+        horizontalWidget_2->setMaximumSize(QSize(600, 16777215));
+        horizontalLayout_5 = new QHBoxLayout(horizontalWidget_2);
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        spinBox_2 = new QSpinBox(horizontalWidget_2);
+        spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
+        spinBox_2->setMinimumSize(QSize(60, 20));
+        spinBox_2->setMaximumSize(QSize(60, 20));
+
+        horizontalLayout_5->addWidget(spinBox_2);
+
+        slider_2 = new QSlider(horizontalWidget_2);
         slider_2->setObjectName(QStringLiteral("slider_2"));
         slider_2->setMinimumSize(QSize(300, 0));
         slider_2->setMaximumSize(QSize(300, 16777215));
@@ -290,7 +358,10 @@ public:
         slider_2->setValue(1);
         slider_2->setOrientation(Qt::Horizontal);
 
-        verticalLayout->addWidget(slider_2, 0, Qt::AlignHCenter);
+        horizontalLayout_5->addWidget(slider_2);
+
+
+        verticalLayout->addWidget(horizontalWidget_2, 0, Qt::AlignHCenter);
 
 
         verticalLayout_2->addWidget(verticalWidget);
@@ -305,24 +376,9 @@ public:
         statusBar = new QStatusBar(hi_opencv20Class);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         hi_opencv20Class->setStatusBar(statusBar);
-        menuBar = new QMenuBar(hi_opencv20Class);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1072, 23));
-        menufile = new QMenu(menuBar);
-        menufile->setObjectName(QStringLiteral("menufile"));
-        menufile->setLayoutDirection(Qt::RightToLeft);
-        menusave = new QMenu(menuBar);
-        menusave->setObjectName(QStringLiteral("menusave"));
-        menusave->setLayoutDirection(Qt::RightToLeft);
-        menuexit = new QMenu(menuBar);
-        menuexit->setObjectName(QStringLiteral("menuexit"));
-        menuexit->setLayoutDirection(Qt::RightToLeft);
-        hi_opencv20Class->setMenuBar(menuBar);
 
-        menuBar->addAction(menufile->menuAction());
-        menuBar->addAction(menusave->menuAction());
-        menuBar->addAction(menuexit->menuAction());
-        menufile->addAction(action1_4);
+        mainToolBar->addAction(action1_4);
+        mainToolBar->addAction(actionsave);
 
         retranslateUi(hi_opencv20Class);
         QObject::connect(pushButton, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_blur()));
@@ -330,8 +386,6 @@ public:
         QObject::connect(pushButton_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_median()));
         QObject::connect(pushButton_4, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_Bilateral()));
         QObject::connect(action1_4, SIGNAL(triggered()), hi_opencv20Class, SLOT(open()));
-        QObject::connect(slider_1, SIGNAL(valueChanged(int)), hi_opencv20Class, SLOT(on_slider_1()));
-        QObject::connect(slider_2, SIGNAL(valueChanged(int)), hi_opencv20Class, SLOT(on_slider_2()));
         QObject::connect(btnErode, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_erode()));
         QObject::connect(btnDilate, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_dilate()));
         QObject::connect(btnOpening, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_opening()));
@@ -344,8 +398,13 @@ public:
         QObject::connect(btnL2R, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_L2R()));
         QObject::connect(btnT2D, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_T2D()));
         QObject::connect(btnpyr, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_pyr()));
+        QObject::connect(pushButton_zhi_1, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_zhione_show()));
+        QObject::connect(pushButton_zhi_2, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_zhitwo_show()));
+        QObject::connect(pushButton_zhi_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_zhithree_show()));
+        QObject::connect(slider_1, SIGNAL(actionTriggered(int)), hi_opencv20Class, SLOT(on_slider_1()));
+        QObject::connect(slider_2, SIGNAL(actionTriggered(int)), hi_opencv20Class, SLOT(on_slider_2()));
 
-        toolBox->setCurrentIndex(3);
+        toolBox->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);
@@ -355,13 +414,13 @@ public:
     {
         hi_opencv20Class->setWindowTitle(QApplication::translate("hi_opencv20Class", "hi_opencv20", Q_NULLPTR));
         actionopen->setText(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
-        actionsave->setText(QApplication::translate("hi_opencv20Class", "save", Q_NULLPTR));
+        actionsave->setText(QApplication::translate("hi_opencv20Class", "\344\277\235\345\255\230", Q_NULLPTR));
         actionopen_2->setText(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
         actionsave_2->setText(QApplication::translate("hi_opencv20Class", "save", Q_NULLPTR));
         action1->setText(QApplication::translate("hi_opencv20Class", "1", Q_NULLPTR));
         action1_2->setText(QApplication::translate("hi_opencv20Class", "1", Q_NULLPTR));
         action1_3->setText(QApplication::translate("hi_opencv20Class", "1", Q_NULLPTR));
-        action1_4->setText(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
+        action1_4->setText(QApplication::translate("hi_opencv20Class", "\346\211\223\345\274\200", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         page1->setToolTip(QApplication::translate("hi_opencv20Class", "\346\261\237\345\215\227", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -378,20 +437,26 @@ public:
         btnTopHat->setText(QApplication::translate("hi_opencv20Class", "\351\241\266\345\270\275", Q_NULLPTR));
         btnBlackHat->setText(QApplication::translate("hi_opencv20Class", "\351\273\221\345\270\275", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("hi_opencv20Class", "\345\275\242\346\200\201\345\217\230\346\215\242", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("hi_opencv20Class", "Histogram", Q_NULLPTR));
+        pushButton_zhi_1->setText(QApplication::translate("hi_opencv20Class", "\350\256\241\347\256\227\345\233\276\345\203\217\347\233\264\346\226\271\345\233\276", Q_NULLPTR));
+        pushButton_zhi_2->setText(QApplication::translate("hi_opencv20Class", "\347\233\264\346\226\271\345\233\276\345\235\207\350\241\241\345\214\226", Q_NULLPTR));
+        pushButton_zhi_3->setText(QApplication::translate("hi_opencv20Class", "\345\217\215\345\220\221\346\212\225\345\275\261", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("hi_opencv20Class", "\347\233\264\346\226\271\345\233\276", Q_NULLPTR));
         btnScale->setText(QApplication::translate("hi_opencv20Class", "\346\224\276\347\274\251", Q_NULLPTR));
         btnRotate->setText(QApplication::translate("hi_opencv20Class", "\346\227\213\350\275\254", Q_NULLPTR));
         btnL2R->setText(QApplication::translate("hi_opencv20Class", "\346\260\264\345\271\263\347\275\256\346\215\242", Q_NULLPTR));
         btnT2D->setText(QApplication::translate("hi_opencv20Class", "\345\236\202\347\233\264\347\275\256\346\215\242", Q_NULLPTR));
         btnpyr->setText(QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\351\207\221\345\255\227\345\241\224", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\345\217\230\345\275\242", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("hi_opencv20Class", "Edge Detection", Q_NULLPTR));
+        btnScale_2->setText(QApplication::translate("hi_opencv20Class", "Sobel\345\257\274\346\225\260", Q_NULLPTR));
+        btnScale_3->setText(QApplication::translate("hi_opencv20Class", "Laplace\347\256\227\345\255\220", Q_NULLPTR));
+        btnScale_4->setText(QApplication::translate("hi_opencv20Class", "Canny\350\276\271\347\274\230\346\243\200\346\265\213", Q_NULLPTR));
+        btnScale_5->setText(QApplication::translate("hi_opencv20Class", "\351\234\215\345\244\253\347\272\277\345\217\230\346\215\242", Q_NULLPTR));
+        btnScale_7->setText(QApplication::translate("hi_opencv20Class", "\351\234\215\345\244\253\345\234\206\345\217\230\346\215\242", Q_NULLPTR));
+        btnScale_8->setText(QApplication::translate("hi_opencv20Class", "\345\233\276\345\203\217\350\275\256\345\273\223", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("hi_opencv20Class", "\350\276\271\347\274\230\346\243\200\346\265\213", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_5), QApplication::translate("hi_opencv20Class", "Target Location", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("hi_opencv20Class", "Template Matching", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "others", Q_NULLPTR));
-        menufile->setTitle(QApplication::translate("hi_opencv20Class", "open", Q_NULLPTR));
-        menusave->setTitle(QApplication::translate("hi_opencv20Class", "save", Q_NULLPTR));
-        menuexit->setTitle(QApplication::translate("hi_opencv20Class", "exit", Q_NULLPTR));
     } // retranslateUi
 
 };
