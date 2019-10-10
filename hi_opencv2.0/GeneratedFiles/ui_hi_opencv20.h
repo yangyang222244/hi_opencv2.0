@@ -403,6 +403,7 @@ public:
         QObject::connect(pushButton_zhi_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_zhithree_show()));
         QObject::connect(slider_1, SIGNAL(actionTriggered(int)), hi_opencv20Class, SLOT(on_slider_1()));
         QObject::connect(slider_2, SIGNAL(actionTriggered(int)), hi_opencv20Class, SLOT(on_slider_2()));
+        QObject::connect(actionsave, SIGNAL(triggered()), hi_opencv20Class, SLOT(save()));
 
         toolBox->setCurrentIndex(1);
 
