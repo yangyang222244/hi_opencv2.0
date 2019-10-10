@@ -726,7 +726,7 @@
    <slot>on_blur()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
+     <x>109</x>
      <y>160</y>
     </hint>
     <hint type="destinationlabel">
@@ -742,7 +742,7 @@
    <slot>on_gaussian()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
+     <x>88</x>
      <y>202</y>
     </hint>
     <hint type="destinationlabel">
@@ -758,7 +758,7 @@
    <slot>on_median()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>102</x>
+     <x>110</x>
      <y>244</y>
     </hint>
     <hint type="destinationlabel">
@@ -774,7 +774,7 @@
    <slot>on_Bilateral()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
+     <x>97</x>
      <y>286</y>
     </hint>
     <hint type="destinationlabel">
@@ -918,7 +918,7 @@
    <slot>on_scale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>117</x>
+     <x>127</x>
      <y>227</y>
     </hint>
     <hint type="destinationlabel">
@@ -934,7 +934,7 @@
    <slot>on_rotate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
+     <x>99</x>
      <y>257</y>
     </hint>
     <hint type="destinationlabel">
@@ -950,7 +950,7 @@
    <slot>on_L2R()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>79</x>
+     <x>89</x>
      <y>287</y>
     </hint>
     <hint type="destinationlabel">
@@ -966,7 +966,7 @@
    <slot>on_T2D()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
+     <x>114</x>
      <y>317</y>
     </hint>
     <hint type="destinationlabel">
@@ -982,7 +982,7 @@
    <slot>on_pyr()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
+     <x>71</x>
      <y>347</y>
     </hint>
     <hint type="destinationlabel">
@@ -998,8 +998,8 @@
    <slot>on_zhione_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>219</y>
+     <x>91</x>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
      <x>213</x>
@@ -1014,8 +1014,8 @@
    <slot>on_zhitwo_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>138</x>
-     <y>257</y>
+     <x>148</x>
+     <y>262</y>
     </hint>
     <hint type="destinationlabel">
      <x>164</x>
@@ -1030,8 +1030,8 @@
    <slot>on_zhithree_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>284</y>
+     <x>115</x>
+     <y>302</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -1071,6 +1071,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionsave</sender>
+   <signal>triggered()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>535</x>
+     <y>310</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>open()</slot>
@@ -1095,5 +1111,6 @@
   <slot>on_zhione_show()</slot>
   <slot>on_zhitwo_show()</slot>
   <slot>on_zhithree_show()</slot>
+  <slot>save()</slot>
  </slots>
 </ui>

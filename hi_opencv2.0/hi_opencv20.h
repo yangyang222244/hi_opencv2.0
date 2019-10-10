@@ -33,6 +33,7 @@ public:
 
 private slots:
 	void open();
+	void save();
 
 	void on_blur();
 	void on_gaussian();
@@ -67,11 +68,17 @@ private slots:
 	void on_findContours();
 
 
+	//直方图
+	void on_zhione_show();
+	void on_zhitwo_show();
+	void on_zhithree_show();
 
 
 private:
 	Ui::hi_opencv20Class ui;
-	Mat image,image1, image2;
+	Mat image;//显示在第一个框
+	Mat image1;//显示在第二个框
+	Mat image2;//原图
 	QLabel *label, *label_2;
 	//边缘检测默认参数
 	int i_by=3;
