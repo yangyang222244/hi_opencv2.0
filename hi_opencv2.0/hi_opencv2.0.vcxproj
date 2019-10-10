@@ -117,15 +117,23 @@
   <ItemGroup>
     <ClCompile Include="hi_opencv20.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Open2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="hi_opencv20.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="hi_opencv20.ui" />
+    <QtUic Include="Open2.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="hi_opencv20.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Open2.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+    </QtMoc>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

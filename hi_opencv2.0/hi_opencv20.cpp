@@ -17,6 +17,9 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 	ui.slider_2->hide();
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
+
+	open2 = new Open2;
+	connect(open2, SIGNAL(sendsignal(QString)), this, SLOT(on_receive(QString)));
 }
 
 int hi_opencv20::image_fit(Mat a, double m, double n)
@@ -74,10 +77,8 @@ void hi_opencv20::open()
 	label->resize(QSize(img.width(), img.height()));
 	ui.input->setWidget(label);
 
-	//ui.output->
-
-	/*label_2->clear();
-	ui.output->setWidget(label_2);*/
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
 
 }
 
@@ -85,6 +86,7 @@ void hi_opencv20::save() {
 	//Mat img = imread("D:/1.jpg", 1);
 	QString filename = QFileDialog::getSaveFileName(this, tr("Save Image"), "", tr("Images(*.png *.bmp *.jpg *.tif *.GIF)")); //选择路径
 	string fileAsSave = filename.toStdString();
+	cvtColor(image, image, COLOR_RGB2BGR);
 	imwrite(fileAsSave, image1);
 }
 
@@ -93,26 +95,26 @@ void hi_opencv20::on_slider_1()
 	int change = 0;
 	switch (i)
 	{
-	case 1:
+	case 11:
 	{
 		int j = ui.slider_1->value();
 		int k = ui.slider_2->value();
 		cv::blur(image, image1, Size(j, k));
 		break;
 	}
-	case 2:
+	case 12:
 	{
 		int j = ui.slider_1->value();
 		cv::GaussianBlur(image, image1, Size(2*j+1, 2*j+1), 0, 0);
 		break;
 	}
-	case 3:
+	case 13:
 	{
 		int j = ui.slider_1->value();
 		cv::medianBlur(image, image1, 2*j+1);
 		break;
 	}
-	case 4:
+	case 14:
 	{
 		int j = ui.slider_1->value();
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
@@ -238,6 +240,24 @@ void hi_opencv20::on_slider_1()
 		i_by = (int)ui.slider_1->value();
 		findContours(i_by, image, image1, label_2, ui);
 	}
+	case 61:
+	{
+		j = ui.slider_1->value();
+		on_convexHull();
+		break;
+	}
+	case 62:
+	{
+		j = ui.slider_1->value();
+		on_rectcircle();
+		break;
+	}
+	case 63:
+	{
+		j = ui.slider_1->value();
+		on_fitEllipse();
+		break;
+	}
 
 #pragma endregion
 
@@ -258,26 +278,26 @@ void hi_opencv20::on_slider_2()
 {
 	switch (i)
 	{
-	case 1:
+	case 11:
 	{
 		int j = ui.slider_1->value();
 		int k = ui.slider_2->value();
 		cv::blur(image, image1, Size(j, k));
 		break;
 	}
-	case 2:
+	case 12:
 	{
 		int j = ui.slider_1->value();
 		cv::GaussianBlur(image, image1, Size(2 * j + 1, 2 * j + 1), 0, 0);
 		break;
 	}
-	case 3:
+	case 13:
 	{
 		int j = ui.slider_1->value();
 		cv::medianBlur(image, image1, 2 * j + 1);
 		break;
 	}
-	case 4:
+	case 14:
 	{
 		int j = ui.slider_1->value();
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
@@ -294,36 +314,43 @@ void hi_opencv20::on_slider_2()
 	ui.output->setWidget(label_2);
 }
 
+
 #pragma region //图形平滑
 
 void hi_opencv20::on_blur()
 {
-	i = 1;
+	i = 11;
 
 	ui.slider_1->setValue(1);
 	ui.slider_2->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->show();
+	ui.spinBox_1->show();
+	ui.spinBox_2->show();
 	ui.slider_1->setMaximum(100);
 }
 
 void hi_opencv20::on_gaussian()
 {
-	i = 2;
+	i = 12;
 	
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 }
 
 void hi_opencv20::on_median()
 {
-	i = 3;
+	i = 13;
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 	
 	
@@ -331,11 +358,13 @@ void hi_opencv20::on_median()
 
 void hi_opencv20::on_Bilateral()
 {
-	i = 4;
+	i = 14;
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 }
 
@@ -348,7 +377,9 @@ void hi_opencv20::on_erode()
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
+
 }
 void hi_opencv20::on_dilate()
 {
@@ -356,6 +387,7 @@ void hi_opencv20::on_dilate()
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_opening()
@@ -364,12 +396,12 @@ void hi_opencv20::on_opening()
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_closing()
 {
 	i = 24;
-
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -377,9 +409,9 @@ void hi_opencv20::on_closing()
 void hi_opencv20::on_MG()
 {
 	i = 25;
-
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_blackhat()
@@ -388,6 +420,7 @@ void hi_opencv20::on_blackhat()
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_tophat()
@@ -396,6 +429,7 @@ void hi_opencv20::on_tophat()
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 
@@ -412,6 +446,7 @@ void hi_opencv20::on_scale()
 	ui.slider_1->setValue(size);
 
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 }
 void hi_opencv20::on_rotate()
 {
@@ -423,10 +458,13 @@ void hi_opencv20::on_rotate()
 	ui.slider_1->setValue(0);
 
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 }
 void hi_opencv20::on_L2R()
 {
 	//i = 43;
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
 	if (image1.empty())
 	{
 		image1 = image.clone();
@@ -460,6 +498,10 @@ void hi_opencv20::on_L2R()
 }
 void hi_opencv20::on_T2D()
 {
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
+
+
 	if (image1.empty())
 	{
 		image1 = image.clone();
@@ -490,6 +532,10 @@ void hi_opencv20::on_T2D()
 }
 void hi_opencv20::on_pyr()
 {
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
+
+
 	Mat temp1, temp2, temp3;
 	pyrDown(image, temp1, Size(image.cols / 2, image.rows / 2));
 	pyrDown(temp1, temp2, Size(temp1.cols / 2, temp1.rows / 2));
@@ -741,6 +787,7 @@ void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 //直方图
 void hi_opencv20::on_zhione_show()
 {
+
 	Mat src;
 	// 1. 加载源图像
 	image2.copyTo(src);
@@ -810,6 +857,8 @@ void hi_opencv20::on_zhione_show()
 
 void hi_opencv20::on_zhitwo_show()
 {
+
+	
 	Mat src, dst;
 
 	char* source_window = (char*)"Source image";
@@ -959,3 +1008,244 @@ void Hist_and_Backproj(int, void*)
 }
 
 #pragma endregion
+
+
+void hi_opencv20::on_convexHull()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 61;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+	Mat image_gray, threshold_output;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<Mat> contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	vector<vector<Point> >hull(contours.size());
+	for (int i = 0; i < contours.size(); i++)
+	{
+		convexHull(Mat(contours[i]), hull[i], false);
+	}
+
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		drawContours(drawing, hull, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+	}
+	drawing.copyTo(image1);
+}
+
+void hi_opencv20::on_rectcircle()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 62;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+	Mat threshold_output, image_gray;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	/// 多边形逼近轮廓 + 获取矩形和圆形边界框
+	vector<vector<Point> > contours_poly(contours.size());
+	vector<Rect> boundRect(contours.size());
+	vector<Point2f>center(contours.size());
+	vector<float>radius(contours.size());
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		approxPolyDP(Mat(contours[i]), contours_poly[i], 3, true);
+		boundRect[i] = boundingRect(Mat(contours_poly[i]));
+		minEnclosingCircle(contours_poly[i], center[i], radius[i]);
+	}
+
+
+	/// 画多边形轮廓 + 包围的矩形框 + 圆形框
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0);
+		circle(drawing, center[i], (int)radius[i], color, 2, 8, 0);
+	}
+	drawing.copyTo(image1);
+}
+
+void hi_opencv20::on_fitEllipse()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 63;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+
+	Mat threshold_output, image_gray;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	/// 对每个找到的轮廓创建可倾斜的边界框和椭圆
+	vector<RotatedRect> minRect(contours.size());
+	vector<RotatedRect> minEllipse(contours.size());
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		minRect[i] = minAreaRect(Mat(contours[i]));
+		if (contours[i].size() > 5)
+		{
+			minEllipse[i] = fitEllipse(Mat(contours[i]));
+		}
+	}
+
+	/// 绘出轮廓及其可倾斜的边界框和边界椭圆
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		// contour
+		drawContours(drawing, contours, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		// ellipse
+		ellipse(drawing, minEllipse[i], color, 2, 8);
+		// rotated rectangle
+		Point2f rect_points[4]; minRect[i].points(rect_points);
+		for (int m = 0; m < 4; m++)
+			line(drawing, rect_points[m], rect_points[(m + 1) % 4], color, 1, 8);
+	}
+	drawing.copyTo(image1);
+}
+
+//目标定位——模板匹配
+void hi_opencv20::on_open2()
+{
+
+	this->hide();
+	open2->show();
+	open2->exec();
+	this->show();
+}
+
+void hi_opencv20::on_receive(QString y)
+{
+	temple = y;
+	String str = qstr2str(temple);
+	image3 = imread(str);
+	int h2 = image3.rows*t;
+	int w2 = image3.cols*t;
+	cv::resize(image3, image3, Size(w2, h2));
+	cvtColor(image3, image3, COLOR_BGR2RGB);
+
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+}
+
+void hi_opencv20::match()
+{
+
+	Mat result, image_display;
+	image.copyTo(image_display);
+
+	int result_cols = image.cols - image3.cols + 1;
+	int result_rows = image.rows - image3.rows + 1;
+
+	result.create(result_cols, result_rows, CV_32FC1);
+	matchTemplate(image, image3, result, match_method);
+	normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
+
+	double minVal; double maxVal; Point minLoc; Point maxLoc;
+	Point matchLoc;
+
+	minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+
+	if (match_method == TM_SQDIFF || match_method == TM_SQDIFF_NORMED)
+	{
+		matchLoc = minLoc;
+	}
+	else
+	{
+		matchLoc = maxLoc;
+	}
+	rectangle(image_display, matchLoc, Point(matchLoc.x + image3.cols, matchLoc.y + image3.rows), Scalar::all(0), 2, 8, 0);
+	rectangle(result, matchLoc, Point(matchLoc.x + image3.cols, matchLoc.y + image3.rows), Scalar::all(0), 2, 8, 0);
+	image_display.copyTo(image1);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+
+void hi_opencv20::on_match1()
+{
+
+	match_method = TM_SQDIFF;
+	match();
+}
+
+void hi_opencv20::on_match2()
+{
+	match_method = TM_SQDIFF_NORMED;
+	match();
+}
+
+void hi_opencv20::on_match3()
+{
+	match_method = TM_CCORR;
+	match();
+}
+
+void hi_opencv20::on_match4()
+{
+	match_method = TM_CCORR_NORMED;
+	match();
+
+}
+
+void hi_opencv20::on_match5()
+{
+	match_method = TM_CCOEFF;
+	match();
+}
+
+void hi_opencv20::on_match6()
+{
+	match_method = TM_CCOEFF_NORMED;
+	match();
+}
+
+
+
+
+void hi_opencv20::on_init()
+{
+	label = new QLabel();
+	ui.output->setWidget(label);
+	ui.slider_1->hide();
+	ui.slider_2->hide();
+	ui.spinBox_1->hide();
+	ui.spinBox_2->hide();
+	i = -1;
+
+}
