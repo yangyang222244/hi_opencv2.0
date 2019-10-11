@@ -1,4 +1,18 @@
 #include "hi_opencv20.h"
+
+//#include "opencv2/text.hpp"
+
+#include  "opencv2/highgui.hpp"
+#include  "opencv2/imgproc.hpp"
+
+#include  <vector>
+#include  <iostream>
+#include  <iomanip>
+
+using namespace std;
+using namespace cv;
+//using namespace cv::text;
+
 #pragma region //函数声明by WFL
 void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
@@ -17,6 +31,9 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 	ui.slider_2->hide();
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
+
+	open2 = new Open2;
+	connect(open2, SIGNAL(sendsignal(QString)), this, SLOT(on_receive(QString)));
 }
 
 int hi_opencv20::image_fit(Mat a, double m, double n)
@@ -74,13 +91,17 @@ void hi_opencv20::open()
 	label->resize(QSize(img.width(), img.height()));
 	ui.input->setWidget(label);
 
-	//ui.output->
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
 
-	/*label_2->clear();
-	ui.output->setWidget(label_2);*/
+}
 
-
-
+void hi_opencv20::save() {
+	//Mat img = imread("D:/1.jpg", 1);
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save Image"), "", tr("Images(*.png *.bmp *.jpg *.tif *.GIF)")); //选择路径
+	string fileAsSave = filename.toStdString();
+	cvtColor(image, image, COLOR_RGB2BGR);
+	imwrite(fileAsSave, image1);
 }
 
 void hi_opencv20::on_slider_1()
@@ -88,26 +109,26 @@ void hi_opencv20::on_slider_1()
 	int change = 0;
 	switch (i)
 	{
-	case 1:
+	case 11:
 	{
 		int j = ui.slider_1->value();
 		int k = ui.slider_2->value();
 		cv::blur(image, image1, Size(j, k));
 		break;
 	}
-	case 2:
+	case 12:
 	{
 		int j = ui.slider_1->value();
 		cv::GaussianBlur(image, image1, Size(2*j+1, 2*j+1), 0, 0);
 		break;
 	}
-	case 3:
+	case 13:
 	{
 		int j = ui.slider_1->value();
 		cv::medianBlur(image, image1, 2*j+1);
 		break;
 	}
-	case 4:
+	case 14:
 	{
 		int j = ui.slider_1->value();
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
@@ -233,6 +254,24 @@ void hi_opencv20::on_slider_1()
 		i_by = (int)ui.slider_1->value();
 		findContours(i_by, image, image1, label_2, ui);
 	}
+	case 61:
+	{
+		j = ui.slider_1->value();
+		on_convexHull();
+		break;
+	}
+	case 62:
+	{
+		j = ui.slider_1->value();
+		on_rectcircle();
+		break;
+	}
+	case 63:
+	{
+		j = ui.slider_1->value();
+		on_fitEllipse();
+		break;
+	}
 
 #pragma endregion
 
@@ -253,26 +292,26 @@ void hi_opencv20::on_slider_2()
 {
 	switch (i)
 	{
-	case 1:
+	case 11:
 	{
 		int j = ui.slider_1->value();
 		int k = ui.slider_2->value();
 		cv::blur(image, image1, Size(j, k));
 		break;
 	}
-	case 2:
+	case 12:
 	{
 		int j = ui.slider_1->value();
 		cv::GaussianBlur(image, image1, Size(2 * j + 1, 2 * j + 1), 0, 0);
 		break;
 	}
-	case 3:
+	case 13:
 	{
 		int j = ui.slider_1->value();
 		cv::medianBlur(image, image1, 2 * j + 1);
 		break;
 	}
-	case 4:
+	case 14:
 	{
 		int j = ui.slider_1->value();
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
@@ -289,36 +328,48 @@ void hi_opencv20::on_slider_2()
 	ui.output->setWidget(label_2);
 }
 
+void hi_opencv20::hideSlider()
+{
+	ui.slider_1->hide();
+	ui.slider_2->hide();
+}
+
 #pragma region //图形平滑
 
 void hi_opencv20::on_blur()
 {
-	i = 1;
+	i = 11;
 
 	ui.slider_1->setValue(1);
 	ui.slider_2->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->show();
+	ui.spinBox_1->show();
+	ui.spinBox_2->show();
 	ui.slider_1->setMaximum(100);
 }
 
 void hi_opencv20::on_gaussian()
 {
-	i = 2;
+	i = 12;
 	
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 }
 
 void hi_opencv20::on_median()
 {
-	i = 3;
+	i = 13;
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 	
 	
@@ -326,11 +377,13 @@ void hi_opencv20::on_median()
 
 void hi_opencv20::on_Bilateral()
 {
-	i = 4;
+	i = 14;
 
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_2->hide();
+	ui.spinBox_1->show();
+	ui.spinBox_2->hide();
 	ui.slider_1->setMaximum(50);
 }
 
@@ -340,31 +393,39 @@ void hi_opencv20::on_Bilateral()
 void hi_opencv20::on_erode()
 {
 	i = 21;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
+
 }
 void hi_opencv20::on_dilate()
 {
 	i = 22;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_opening()
 {
 	i = 23;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_closing()
 {
 	i = 24;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -372,25 +433,31 @@ void hi_opencv20::on_closing()
 void hi_opencv20::on_MG()
 {
 	i = 25;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_blackhat()
 {
 	i = 26;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 void hi_opencv20::on_tophat()
 {
 	i = 27;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(100);
 }
 
@@ -400,6 +467,7 @@ void hi_opencv20::on_tophat()
 void hi_opencv20::on_scale()
 {
 	i = 41;
+	hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(500);
 	double size;
@@ -407,25 +475,36 @@ void hi_opencv20::on_scale()
 	ui.slider_1->setValue(size);
 
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 }
 void hi_opencv20::on_rotate()
 {
 	i = 42;
-
+	hideSlider();
 	image1 = image.clone();
 	ui.slider_1->setMinimum(-180);
 	ui.slider_1->setMaximum(180);
 	ui.slider_1->setValue(0);
 
 	ui.slider_1->show();
+	ui.spinBox_1->show();
 }
+
+//没有修改i
+
 void hi_opencv20::on_L2R()
 {
+	hideSlider();
 	//i = 43;
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
 	if (image1.empty())
 	{
 		image1 = image.clone();
 	}
+
+	image1 = image.clone();
+
 
 	Mat map1, map2;
 	///dst.create(image.size(), image.type());
@@ -455,10 +534,18 @@ void hi_opencv20::on_L2R()
 }
 void hi_opencv20::on_T2D()
 {
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
+
+
 	if (image1.empty())
 	{
 		image1 = image.clone();
 	}
+	hideSlider();
+
+	image1 = image.clone();
+
 	Mat map1, map2;
 	///dst.create(image.size(), image.type());
 	map1.create(image1.size(), CV_32FC1);
@@ -485,6 +572,11 @@ void hi_opencv20::on_T2D()
 }
 void hi_opencv20::on_pyr()
 {
+	ui.slider_1->hide();
+	ui.spinBox_1->hide();
+
+
+	hideSlider();
 	Mat temp1, temp2, temp3;
 	pyrDown(image, temp1, Size(image.cols / 2, image.rows / 2));
 	pyrDown(temp1, temp2, Size(temp1.cols / 2, temp1.rows / 2));
@@ -730,3 +822,470 @@ void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 	ui.output->setWidget(label_2);
 }
 #pragma endregion
+
+#pragma region //直方图
+
+void hi_opencv20::on_zhione_show()
+{
+
+	Mat src;
+	// 1. 加载源图像
+	image2.copyTo(src);
+
+	// 2. 在R、G、B平面中分离源图像，把多通道图像分为多个单通道图像。使用OpenCV函数cv::split。
+	vector<Mat> bgr_planes;
+	split(src, bgr_planes);// 把多通道图像分为多个单通道图像
+
+//	printf("channels=%d\n", bgr_planes.size());//3通道，所以size也是3
+
+	// 3. 现在我们准备开始为每个平面配置直方图。 由于我们正在使用B，G和R平面，我们知道我们的值将在区间[0,255]范围内
+	int histBins = 256;//建立箱数（5,10 ......）
+	float range[] = { 0, 255 };//设置值的范围（在0到255之间）
+	const float * histRanges = range;//注意：函数形参 float ** 与 const float ** 是两种不同数据类型。
+	bool uniform = true, accumulate = false;//我们希望我们的箱子具有相同的尺寸（均匀）并在开头清除直方图
+	Mat b_hist, g_hist, r_hist;//calcHist计算出来的Mat中元素的最大值可能上几千，所以最好归一化后再绘制直方图
+	//使用OpenCV函数cv::calcHist计算直方图：
+	calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histBins, &histRanges, uniform, accumulate);//计算直方图
+	calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histBins, &histRanges, uniform, accumulate);
+	calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histBins, &histRanges, uniform, accumulate);
+
+	// 4. 归一化
+	int hist_cols = 400;
+	int hist_rows = 512;
+	int bin_w = hist_rows / histBins;
+
+	//请注意，在绘制之前，我们首先对直方图进行cv :: normalize，使其值落在输入参数指示的范围内：
+	normalize(b_hist, b_hist, 0, hist_cols, NORM_MINMAX, -1, Mat());//b_hist中元素的值转换到 0-hist_cols 之间
+	normalize(g_hist, g_hist, 0, hist_cols, NORM_MINMAX, -1, Mat());
+	normalize(r_hist, r_hist, 0, hist_cols, NORM_MINMAX, -1, Mat());//传参 0, hist_cols 或 hist_cols, 0 结果一致
+
+	// 5. 绘制直方图
+	Mat histImage(hist_rows, hist_cols, CV_8UC3, Scalar(0, 0, 0));
+	for (int i = 1; i < histBins; i++)
+	{
+		// cvRound 四舍五入，返回整型值
+		line(histImage, Point((i - 1)*bin_w, hist_cols - cvRound(b_hist.at<float>(i - 1))),
+			Point(i*bin_w, hist_cols - cvRound(b_hist.at<float>(i))), Scalar(255, 0, 0), 2, LINE_AA);
+		line(histImage, Point((i - 1)*bin_w, hist_cols - cvRound(g_hist.at<float>(i - 1))),
+			Point(i*bin_w, hist_cols - cvRound(g_hist.at<float>(i))), Scalar(0, 255, 0), 2, LINE_AA);
+		line(histImage, Point((i - 1)*bin_w, hist_cols - cvRound(r_hist.at<float>(i - 1))),
+			Point(i*bin_w, hist_cols - cvRound(r_hist.at<float>(i))), Scalar(0, 0, 255), 2, LINE_AA);
+	}
+
+	histImage.copyTo(image1);
+
+	//double m = ui.input->height();
+	//double n = ui.input->width();
+	//image_fit(histImage, m, n);
+	//h1 = histImage.rows * t;
+	//w1 = histImage.cols* t;
+	//cv::resize(histImage, histImage, Size(w1, h1));
+
+	QImage img1 = QImage((const unsigned char*)(histImage.data), histImage.cols, histImage.rows, QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img1));
+	label_2->resize(QSize(img1.width(), img1.height()));
+	ui.output->setWidget(label_2);
+
+
+
+	QImage img = QImage((const unsigned char*)(image2.data), image2.cols, image2.rows, QImage::Format_RGB888);
+	//ui.input->setPixmap(QPixmap::fromImage(img));
+
+}
+
+
+void hi_opencv20::on_zhitwo_show()
+{
+
+	
+	Mat src, dst;
+
+	char* source_window = (char*)"Source image";
+	char* equalized_window = (char*)"Equalized Image";
+
+	/// 加载源图像
+	image2.copyTo(src);
+
+	/// 转为灰度图
+	cvtColor(src, src, CV_BGR2GRAY);
+
+	/// 应用直方图均衡化
+	equalizeHist(src, dst);
+
+	/// 显示结果
+
+/*显示彩色图*/
+//	QImage img = QImage((const unsigned char*)(dst.data), dst.cols, dst.rows, QImage::Format_RGB888);
+//	ui.label_zhi_out->setPixmap(QPixmap::fromImage(img));
+
+/*显示灰度图*/
+	dst.copyTo(image1);
+
+	double m = ui.input->height();
+	double n = ui.input->width();
+	image_fit(dst, m, n);
+	h1 = dst.rows * t;
+	w1 = dst.cols* t;
+	cv::resize(dst, dst, Size(w1, h1));
+
+	QImage img = QImage((const uchar*)dst.data, dst.cols, dst.rows, dst.cols*dst.channels(), QImage::Format_Indexed8);
+	//ui.label_zhi_out->setPixmap(QPixmap::fromImage(img));
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+
+
+
+	m = ui.input->height();
+	n = ui.input->width();
+	image_fit(src, m, n);
+	h1 = src.rows * t;
+	w1 = src.cols* t;
+	cv::resize(src, src, Size(w1, h1));
+
+	QImage img2 = QImage((const uchar*)src.data, src.cols, src.rows, src.cols*src.channels(), QImage::Format_Indexed8);
+	//ui.label_zhi_in->setPixmap(QPixmap::fromImage(img2));
+	label = new QLabel();
+	label->setPixmap(QPixmap::fromImage(img2));
+	label->resize(QSize(img2.width(), img2.height()));
+	ui.input->setWidget(label);
+
+
+}
+
+/// 全局变量
+Mat src_zhi; Mat hsv_zhi; Mat hue_zhi; Mat dst_zhi;
+int bins_zhi = 25;
+
+/// 函数申明
+void Hist_and_Backproj(int, void*);
+
+/** @函数 main */
+void hi_opencv20::on_zhithree_show()
+{
+	/// 读取图像
+	image2.copyTo(src_zhi);
+
+	/// 转换到 HSV 空间
+	cvtColor(src_zhi, hsv_zhi, CV_BGR2HSV);
+
+	/// 分离 Hue 通道
+	hue_zhi.create(hsv_zhi.size(), hsv_zhi.depth());
+	int ch[] = { 0, 0 };
+	mixChannels(&hsv_zhi, 1, &hue_zhi, 1, ch, 1);
+
+	/// 创建 Trackbar 来输入bin的数目
+	//char* window_image = (char*)"Source image";
+	//namedWindow(window_image, CV_WINDOW_AUTOSIZE);
+	//createTrackbar("* Hue  bins: ", window_image, &bins_zhi, 180, Hist_and_Backproj);
+	Hist_and_Backproj(0, 0);
+
+	/// 现实图像
+	//imshow(window_image, src_zhi);
+
+	Mat backproj;
+	dst_zhi.copyTo(backproj);
+
+	dst_zhi.copyTo(image1);
+
+	double m = ui.input->height();
+	double n = ui.input->width();
+	image_fit(backproj, m, n);
+	h1 = backproj.rows * t;
+	w1 = backproj.cols* t;
+	cv::resize(backproj, backproj, Size(w1, h1));
+
+	QImage img = QImage((const uchar*)backproj.data, backproj.cols, backproj.rows, backproj.cols*backproj.channels(), QImage::Format_Indexed8);
+	//ui.label_zhi_out->setPixmap(QPixmap::fromImage(img));
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+
+
+}
+
+
+/**
+ * @函数 Hist_and_Backproj
+ * @简介：Trackbar事件的回调函数
+ */
+void Hist_and_Backproj(int, void*)
+{
+	MatND hist;
+	int histSize = MAX(bins_zhi, 2);
+	float hue_range[] = { 0, 180 };
+	const float* ranges = { hue_range };
+
+	/// 计算直方图并归一化
+	calcHist(&hue_zhi, 1, 0, Mat(), hist, 1, &histSize, &ranges, true, false);
+	normalize(hist, hist, 0, 255, NORM_MINMAX, -1, Mat());
+
+	/// 计算反向投影
+	MatND backproj;
+	calcBackProject(&hue_zhi, 1, 0, hist, backproj, &ranges, 1, true);
+
+	backproj.copyTo(dst_zhi);
+
+	/// 显示反向投影
+//	imshow("BackProj", backproj);
+
+
+
+	/// 显示直方图
+	int w = 400; int h = 400;
+	int bin_w = cvRound((double)w / histSize);
+	Mat histImg = Mat::zeros(w, h, CV_8UC3);
+
+	for (int i = 0; i < bins_zhi; i++)
+	{
+		rectangle(histImg, Point(i*bin_w, h), Point((i + 1)*bin_w, h - cvRound(hist.at<float>(i)*h / 255.0)), Scalar(0, 0, 255), -1);
+	}
+
+	//	imshow("Histogram", histImg);
+}
+
+#pragma endregion
+
+
+void hi_opencv20::on_convexHull()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 61;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+	Mat image_gray, threshold_output;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<Mat> contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	vector<vector<Point> >hull(contours.size());
+	for (int i = 0; i < contours.size(); i++)
+	{
+		convexHull(Mat(contours[i]), hull[i], false);
+	}
+
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		drawContours(drawing, hull, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+	}
+	drawing.copyTo(image1);
+}
+
+void hi_opencv20::on_rectcircle()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 62;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+	Mat threshold_output, image_gray;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	/// 多边形逼近轮廓 + 获取矩形和圆形边界框
+	vector<vector<Point> > contours_poly(contours.size());
+	vector<Rect> boundRect(contours.size());
+	vector<Point2f>center(contours.size());
+	vector<float>radius(contours.size());
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		approxPolyDP(Mat(contours[i]), contours_poly[i], 3, true);
+		boundRect[i] = boundingRect(Mat(contours_poly[i]));
+		minEnclosingCircle(contours_poly[i], center[i], radius[i]);
+	}
+
+
+	/// 画多边形轮廓 + 包围的矩形框 + 圆形框
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0);
+		circle(drawing, center[i], (int)radius[i], color, 2, 8, 0);
+	}
+	drawing.copyTo(image1);
+}
+
+void hi_opencv20::on_fitEllipse()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 63;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+
+
+	Mat threshold_output, image_gray;
+	cvtColor(image, image_gray, COLOR_BGR2GRAY);
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
+
+	threshold(image_gray, threshold_output, j, 255, THRESH_BINARY);
+	findContours(threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	/// 对每个找到的轮廓创建可倾斜的边界框和椭圆
+	vector<RotatedRect> minRect(contours.size());
+	vector<RotatedRect> minEllipse(contours.size());
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		minRect[i] = minAreaRect(Mat(contours[i]));
+		if (contours[i].size() > 5)
+		{
+			minEllipse[i] = fitEllipse(Mat(contours[i]));
+		}
+	}
+
+	/// 绘出轮廓及其可倾斜的边界框和边界椭圆
+	Mat drawing = Mat::zeros(threshold_output.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		// contour
+		drawContours(drawing, contours, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+		// ellipse
+		ellipse(drawing, minEllipse[i], color, 2, 8);
+		// rotated rectangle
+		Point2f rect_points[4]; minRect[i].points(rect_points);
+		for (int m = 0; m < 4; m++)
+			line(drawing, rect_points[m], rect_points[(m + 1) % 4], color, 1, 8);
+	}
+	drawing.copyTo(image1);
+}
+
+//目标定位——模板匹配
+void hi_opencv20::on_open2()
+{
+
+	this->hide();
+	open2->show();
+	open2->exec();
+	this->show();
+}
+
+void hi_opencv20::on_receive(QString y)
+{
+	temple = y;
+	String str = qstr2str(temple);
+	image3 = imread(str);
+	int h2 = image3.rows*t;
+	int w2 = image3.cols*t;
+	cv::resize(image3, image3, Size(w2, h2));
+	cvtColor(image3, image3, COLOR_BGR2RGB);
+
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+}
+
+void hi_opencv20::match()
+{
+
+	Mat result, image_display;
+	image.copyTo(image_display);
+
+	int result_cols = image.cols - image3.cols + 1;
+	int result_rows = image.rows - image3.rows + 1;
+
+	result.create(result_cols, result_rows, CV_32FC1);
+	matchTemplate(image, image3, result, match_method);
+	normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
+
+	double minVal; double maxVal; Point minLoc; Point maxLoc;
+	Point matchLoc;
+
+	minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+
+	if (match_method == TM_SQDIFF || match_method == TM_SQDIFF_NORMED)
+	{
+		matchLoc = minLoc;
+	}
+	else
+	{
+		matchLoc = maxLoc;
+	}
+	rectangle(image_display, matchLoc, Point(matchLoc.x + image3.cols, matchLoc.y + image3.rows), Scalar::all(0), 2, 8, 0);
+	rectangle(result, matchLoc, Point(matchLoc.x + image3.cols, matchLoc.y + image3.rows), Scalar::all(0), 2, 8, 0);
+	image_display.copyTo(image1);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+
+void hi_opencv20::on_match1()
+{
+
+	match_method = TM_SQDIFF;
+	match();
+}
+
+void hi_opencv20::on_match2()
+{
+	match_method = TM_SQDIFF_NORMED;
+	match();
+}
+
+void hi_opencv20::on_match3()
+{
+	match_method = TM_CCORR;
+	match();
+}
+
+void hi_opencv20::on_match4()
+{
+	match_method = TM_CCORR_NORMED;
+	match();
+
+}
+
+void hi_opencv20::on_match5()
+{
+	match_method = TM_CCOEFF;
+	match();
+}
+
+void hi_opencv20::on_match6()
+{
+	match_method = TM_CCOEFF_NORMED;
+	match();
+}
+
+
+
+
+void hi_opencv20::on_init()
+{
+	label = new QLabel();
+	ui.output->setWidget(label);
+	ui.slider_1->hide();
+	ui.slider_2->hide();
+	ui.spinBox_1->hide();
+	ui.spinBox_2->hide();
+	i = -1;
+
+}
