@@ -1048,5 +1048,4 @@ void hi_opencv20::on_textDetection()
 	*/
 }
 
-
 #pragma endregion
