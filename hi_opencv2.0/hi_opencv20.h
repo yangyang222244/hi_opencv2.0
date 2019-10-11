@@ -16,10 +16,6 @@
 #include<vector>
 #include <iostream>
 
-using namespace cv;
-using namespace std;
-
-
 class hi_opencv20 : public QMainWindow
 {
 	Q_OBJECT
@@ -27,10 +23,15 @@ class hi_opencv20 : public QMainWindow
 public:
 	hi_opencv20(QWidget *parent = Q_NULLPTR);
 	double t, h1, w1;
-	int i = -1;
+	int i = -1, j = 1;
+	RNG rng;
+	QString temple;
+	int match_method;
 	//QLabel label;
 
 	int image_fit(Mat a, double m, double n);
+	void match();
+
 
 private slots:
 	void open();
@@ -43,6 +44,7 @@ private slots:
 
 	void on_slider_1();
 	void on_slider_2();
+
 
 	//形态变换
 	void on_erode();
@@ -74,8 +76,22 @@ private slots:
 	void on_zhitwo_show();
 	void on_zhithree_show();
 
-	//文字检测
-	void on_textDetection();
+	//目标定位
+	void on_convexHull();
+	void on_rectcircle();
+	void on_fitEllipse();
+	//模板匹配
+	void on_open2();
+	void on_receive(QString);
+	void on_match1();
+	void on_match2();
+	void on_match3();
+	void on_match4();
+	void on_match5();
+	void on_match6();
+
+
+	void on_init();
 
 
 private:
@@ -83,11 +99,10 @@ private:
 	Mat image;//显示在第一个框
 	Mat image1;//显示在第二个框
 	Mat image2;//原图
+	Mat image3;//模板图
 	QLabel *label, *label_2;
 	//边缘检测默认参数
 	int i_by=3;
 
-	void hideSlider();
-
-
+	Open2 *open2;
 };
