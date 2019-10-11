@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_hi_opencv20_t {
-    QByteArrayData data[31];
-    char stringdata0[321];
+    QByteArrayData data[32];
+    char stringdata0[338];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -61,7 +61,8 @@ QT_MOC_LITERAL(26, 242, 15), // "on_HoughCircles"
 QT_MOC_LITERAL(27, 258, 15), // "on_findContours"
 QT_MOC_LITERAL(28, 274, 14), // "on_zhione_show"
 QT_MOC_LITERAL(29, 289, 14), // "on_zhitwo_show"
-QT_MOC_LITERAL(30, 304, 16) // "on_zhithree_show"
+QT_MOC_LITERAL(30, 304, 16), // "on_zhithree_show"
+QT_MOC_LITERAL(31, 321, 16) // "on_textDetection"
 
     },
     "hi_opencv20\0open\0\0save\0on_blur\0"
@@ -72,7 +73,8 @@ QT_MOC_LITERAL(30, 304, 16) // "on_zhithree_show"
     "on_L2R\0on_T2D\0on_pyr\0on_Sobel\0on_Laplace\0"
     "on_Canny\0on_HoughLines\0on_HoughCircles\0"
     "on_findContours\0on_zhione_show\0"
-    "on_zhitwo_show\0on_zhithree_show"
+    "on_zhitwo_show\0on_zhithree_show\0"
+    "on_textDetection"
 };
 #undef QT_MOC_LITERAL
 
@@ -82,7 +84,7 @@ static const uint qt_meta_data_hi_opencv20[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      29,   14, // methods
+      30,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -90,37 +92,39 @@ static const uint qt_meta_data_hi_opencv20[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  159,    2, 0x08 /* Private */,
-       3,    0,  160,    2, 0x08 /* Private */,
-       4,    0,  161,    2, 0x08 /* Private */,
-       5,    0,  162,    2, 0x08 /* Private */,
-       6,    0,  163,    2, 0x08 /* Private */,
-       7,    0,  164,    2, 0x08 /* Private */,
-       8,    0,  165,    2, 0x08 /* Private */,
-       9,    0,  166,    2, 0x08 /* Private */,
-      10,    0,  167,    2, 0x08 /* Private */,
-      11,    0,  168,    2, 0x08 /* Private */,
-      12,    0,  169,    2, 0x08 /* Private */,
-      13,    0,  170,    2, 0x08 /* Private */,
-      14,    0,  171,    2, 0x08 /* Private */,
-      15,    0,  172,    2, 0x08 /* Private */,
-      16,    0,  173,    2, 0x08 /* Private */,
-      17,    0,  174,    2, 0x08 /* Private */,
-      18,    0,  175,    2, 0x08 /* Private */,
-      19,    0,  176,    2, 0x08 /* Private */,
-      20,    0,  177,    2, 0x08 /* Private */,
-      21,    0,  178,    2, 0x08 /* Private */,
-      22,    0,  179,    2, 0x08 /* Private */,
-      23,    0,  180,    2, 0x08 /* Private */,
-      24,    0,  181,    2, 0x08 /* Private */,
-      25,    0,  182,    2, 0x08 /* Private */,
-      26,    0,  183,    2, 0x08 /* Private */,
-      27,    0,  184,    2, 0x08 /* Private */,
-      28,    0,  185,    2, 0x08 /* Private */,
-      29,    0,  186,    2, 0x08 /* Private */,
-      30,    0,  187,    2, 0x08 /* Private */,
+       1,    0,  164,    2, 0x08 /* Private */,
+       3,    0,  165,    2, 0x08 /* Private */,
+       4,    0,  166,    2, 0x08 /* Private */,
+       5,    0,  167,    2, 0x08 /* Private */,
+       6,    0,  168,    2, 0x08 /* Private */,
+       7,    0,  169,    2, 0x08 /* Private */,
+       8,    0,  170,    2, 0x08 /* Private */,
+       9,    0,  171,    2, 0x08 /* Private */,
+      10,    0,  172,    2, 0x08 /* Private */,
+      11,    0,  173,    2, 0x08 /* Private */,
+      12,    0,  174,    2, 0x08 /* Private */,
+      13,    0,  175,    2, 0x08 /* Private */,
+      14,    0,  176,    2, 0x08 /* Private */,
+      15,    0,  177,    2, 0x08 /* Private */,
+      16,    0,  178,    2, 0x08 /* Private */,
+      17,    0,  179,    2, 0x08 /* Private */,
+      18,    0,  180,    2, 0x08 /* Private */,
+      19,    0,  181,    2, 0x08 /* Private */,
+      20,    0,  182,    2, 0x08 /* Private */,
+      21,    0,  183,    2, 0x08 /* Private */,
+      22,    0,  184,    2, 0x08 /* Private */,
+      23,    0,  185,    2, 0x08 /* Private */,
+      24,    0,  186,    2, 0x08 /* Private */,
+      25,    0,  187,    2, 0x08 /* Private */,
+      26,    0,  188,    2, 0x08 /* Private */,
+      27,    0,  189,    2, 0x08 /* Private */,
+      28,    0,  190,    2, 0x08 /* Private */,
+      29,    0,  191,    2, 0x08 /* Private */,
+      30,    0,  192,    2, 0x08 /* Private */,
+      31,    0,  193,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -189,6 +193,7 @@ void hi_opencv20::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 26: _t->on_zhione_show(); break;
         case 27: _t->on_zhitwo_show(); break;
         case 28: _t->on_zhithree_show(); break;
+        case 29: _t->on_textDetection(); break;
         default: ;
         }
     }
@@ -220,13 +225,13 @@ int hi_opencv20::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 29)
+        if (_id < 30)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 30;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 29)
+        if (_id < 30)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 29;
+        _id -= 30;
     }
     return _id;
 }

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>hi_opencv20</string>
+   <string>机器视觉应用软件</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -33,7 +33,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page1">
        <property name="geometry">
@@ -41,7 +41,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <property name="toolTip">
@@ -97,7 +97,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -201,7 +201,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -253,7 +253,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -331,7 +331,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -422,7 +422,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -435,7 +435,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -448,11 +448,29 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>210</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
-        <string>others</string>
+        <string>其它</string>
+       </attribute>
+       <widget class="QPushButton" name="btnTextDetection">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>文字检测</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_8">
+       <attribute name="label">
+        <string>关闭</string>
        </attribute>
       </widget>
      </widget>
@@ -481,8 +499,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>406</width>
-              <height>382</height>
+              <width>411</width>
+              <height>415</height>
              </rect>
             </property>
            </widget>
@@ -517,8 +535,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>405</width>
-              <height>382</height>
+              <width>411</width>
+              <height>415</height>
              </rect>
             </property>
            </widget>
@@ -726,8 +744,8 @@
    <slot>on_blur()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>109</x>
-     <y>160</y>
+     <x>108</x>
+     <y>155</y>
     </hint>
     <hint type="destinationlabel">
      <x>272</x>
@@ -742,8 +760,8 @@
    <slot>on_gaussian()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>202</y>
+     <x>97</x>
+     <y>195</y>
     </hint>
     <hint type="destinationlabel">
      <x>322</x>
@@ -758,8 +776,8 @@
    <slot>on_median()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>110</x>
-     <y>244</y>
+     <x>108</x>
+     <y>235</y>
     </hint>
     <hint type="destinationlabel">
      <x>441</x>
@@ -774,8 +792,8 @@
    <slot>on_Bilateral()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>97</x>
-     <y>286</y>
+     <x>106</x>
+     <y>275</y>
     </hint>
     <hint type="destinationlabel">
      <x>531</x>
@@ -806,8 +824,8 @@
    <slot>on_erode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>125</x>
-     <y>167</y>
+     <x>133</x>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
      <x>-80</x>
@@ -822,8 +840,8 @@
    <slot>on_dilate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>80</x>
-     <y>197</y>
+     <x>88</x>
+     <y>189</y>
     </hint>
     <hint type="destinationlabel">
      <x>-94</x>
@@ -838,8 +856,8 @@
    <slot>on_opening()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>227</y>
+     <x>121</x>
+     <y>219</y>
     </hint>
     <hint type="destinationlabel">
      <x>-106</x>
@@ -854,8 +872,8 @@
    <slot>on_closing()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>257</y>
+     <x>112</x>
+     <y>249</y>
     </hint>
     <hint type="destinationlabel">
      <x>-39</x>
@@ -870,8 +888,8 @@
    <slot>on_MG()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>287</y>
+     <x>112</x>
+     <y>279</y>
     </hint>
     <hint type="destinationlabel">
      <x>-135</x>
@@ -886,8 +904,8 @@
    <slot>on_tophat()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>62</x>
-     <y>317</y>
+     <x>70</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
      <x>-104</x>
@@ -902,8 +920,8 @@
    <slot>on_blackhat()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>74</x>
-     <y>347</y>
+     <x>82</x>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
      <x>-86</x>
@@ -918,8 +936,8 @@
    <slot>on_scale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>127</x>
-     <y>227</y>
+     <x>135</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
      <x>-78</x>
@@ -934,8 +952,8 @@
    <slot>on_rotate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>99</x>
-     <y>257</y>
+     <x>107</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
      <x>-118</x>
@@ -950,8 +968,8 @@
    <slot>on_L2R()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>287</y>
+     <x>97</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
      <x>-92</x>
@@ -966,8 +984,8 @@
    <slot>on_T2D()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>114</x>
-     <y>317</y>
+     <x>122</x>
+     <y>301</y>
     </hint>
     <hint type="destinationlabel">
      <x>-86</x>
@@ -982,8 +1000,8 @@
    <slot>on_pyr()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>347</y>
+     <x>79</x>
+     <y>331</y>
     </hint>
     <hint type="destinationlabel">
      <x>-138</x>
@@ -998,8 +1016,8 @@
    <slot>on_zhione_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>91</x>
-     <y>222</y>
+     <x>99</x>
+     <y>210</y>
     </hint>
     <hint type="destinationlabel">
      <x>213</x>
@@ -1014,8 +1032,8 @@
    <slot>on_zhitwo_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>262</y>
+     <x>156</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
      <x>164</x>
@@ -1030,8 +1048,8 @@
    <slot>on_zhithree_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>115</x>
-     <y>302</y>
+     <x>123</x>
+     <y>290</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -1046,8 +1064,8 @@
    <slot>on_slider_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>571</x>
-     <y>503</y>
+     <x>811</x>
+     <y>525</y>
     </hint>
     <hint type="destinationlabel">
      <x>674</x>
@@ -1062,8 +1080,8 @@
    <slot>on_slider_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>644</x>
-     <y>546</y>
+     <x>811</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
      <x>733</x>
@@ -1084,6 +1102,22 @@
     <hint type="destinationlabel">
      <x>535</x>
      <y>310</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTextDetection</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_textDetection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>66</x>
+     <y>305</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-65</x>
+     <y>469</y>
     </hint>
    </hints>
   </connection>
@@ -1112,5 +1146,6 @@
   <slot>on_zhitwo_show()</slot>
   <slot>on_zhithree_show()</slot>
   <slot>save()</slot>
+  <slot>on_textDetection()</slot>
  </slots>
 </ui>

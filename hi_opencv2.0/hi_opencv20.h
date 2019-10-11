@@ -12,6 +12,7 @@
 #include <qfiledialog.h>                //getopenfilename 类申明
 #include <qlabel.h>  //label类
 #include <opencv2/highgui/highgui_c.h>
+//#include "opencv2/text.hpp"
 #include<vector>
 #include <iostream>
 
@@ -73,6 +74,9 @@ private slots:
 	void on_zhitwo_show();
 	void on_zhithree_show();
 
+	//文字检测
+	void on_textDetection();
+
 
 private:
 	Ui::hi_opencv20Class ui;
@@ -82,4 +86,8 @@ private:
 	QLabel *label, *label_2;
 	//边缘检测默认参数
 	int i_by=3;
+
+	void hideSlider();
+
+
 };

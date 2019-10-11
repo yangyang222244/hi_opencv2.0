@@ -1,4 +1,18 @@
 #include "hi_opencv20.h"
+
+//#include "opencv2/text.hpp"
+
+#include  "opencv2/highgui.hpp"
+#include  "opencv2/imgproc.hpp"
+
+#include  <vector>
+#include  <iostream>
+#include  <iomanip>
+
+using namespace std;
+using namespace cv;
+//using namespace cv::text;
+
 #pragma region //函数声明by WFL
 void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
@@ -294,6 +308,12 @@ void hi_opencv20::on_slider_2()
 	ui.output->setWidget(label_2);
 }
 
+void hi_opencv20::hideSlider()
+{
+	ui.slider_1->hide();
+	ui.slider_2->hide();
+}
+
 #pragma region //图形平滑
 
 void hi_opencv20::on_blur()
@@ -345,7 +365,8 @@ void hi_opencv20::on_Bilateral()
 void hi_opencv20::on_erode()
 {
 	i = 21;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -353,7 +374,8 @@ void hi_opencv20::on_erode()
 void hi_opencv20::on_dilate()
 {
 	i = 22;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -361,7 +383,8 @@ void hi_opencv20::on_dilate()
 void hi_opencv20::on_opening()
 {
 	i = 23;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -369,7 +392,8 @@ void hi_opencv20::on_opening()
 void hi_opencv20::on_closing()
 {
 	i = 24;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -377,7 +401,8 @@ void hi_opencv20::on_closing()
 void hi_opencv20::on_MG()
 {
 	i = 25;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -385,7 +410,8 @@ void hi_opencv20::on_MG()
 void hi_opencv20::on_blackhat()
 {
 	i = 26;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -393,7 +419,8 @@ void hi_opencv20::on_blackhat()
 void hi_opencv20::on_tophat()
 {
 	i = 27;
-
+	hideSlider();
+	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
 	ui.slider_1->setMaximum(100);
@@ -405,6 +432,7 @@ void hi_opencv20::on_tophat()
 void hi_opencv20::on_scale()
 {
 	i = 41;
+	hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(500);
 	double size;
@@ -416,7 +444,7 @@ void hi_opencv20::on_scale()
 void hi_opencv20::on_rotate()
 {
 	i = 42;
-
+	hideSlider();
 	image1 = image.clone();
 	ui.slider_1->setMinimum(-180);
 	ui.slider_1->setMaximum(180);
@@ -424,13 +452,16 @@ void hi_opencv20::on_rotate()
 
 	ui.slider_1->show();
 }
+
+//没有修改i
+
 void hi_opencv20::on_L2R()
 {
+	hideSlider();
 	//i = 43;
-	if (image1.empty())
-	{
-		image1 = image.clone();
-	}
+
+	image1 = image.clone();
+
 
 	Mat map1, map2;
 	///dst.create(image.size(), image.type());
@@ -460,10 +491,10 @@ void hi_opencv20::on_L2R()
 }
 void hi_opencv20::on_T2D()
 {
-	if (image1.empty())
-	{
-		image1 = image.clone();
-	}
+	hideSlider();
+
+	image1 = image.clone();
+
 	Mat map1, map2;
 	///dst.create(image.size(), image.type());
 	map1.create(image1.size(), CV_32FC1);
@@ -490,6 +521,7 @@ void hi_opencv20::on_T2D()
 }
 void hi_opencv20::on_pyr()
 {
+	hideSlider();
 	Mat temp1, temp2, temp3;
 	pyrDown(image, temp1, Size(image.cols / 2, image.rows / 2));
 	pyrDown(temp1, temp2, Size(temp1.cols / 2, temp1.rows / 2));
@@ -736,9 +768,8 @@ void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 }
 #pragma endregion
 
+#pragma region //直方图
 
-
-//直方图
 void hi_opencv20::on_zhione_show()
 {
 	Mat src;
@@ -957,5 +988,65 @@ void Hist_and_Backproj(int, void*)
 
 	//	imshow("Histogram", histImg);
 }
+
+#pragma endregion
+
+#pragma region //其它
+
+
+//文字检测
+void groups_draw(Mat &src, vector<Rect> &groups)
+{
+	for (int i = (int)groups.size() - 1; i >= 0; i--)
+	{
+		if (src.type() == CV_8UC3)
+			rectangle(src, groups.at(i).tl(), groups.at(i).br(), Scalar(0, 255, 255), 3, 8);
+		else
+			rectangle(src, groups.at(i).tl(), groups.at(i).br(), Scalar(255), 3, 8);
+	}
+}
+void hi_opencv20::on_textDetection()
+{
+	/*
+	Mat src;
+	src = image.clone();
+
+	vector<Mat> channels;
+	
+	
+	computeNMChannels(src, channels);
+
+	
+	int cn = (int)channels.size();
+	// Append negative channels to detect ER- (bright regions over dark background)
+	for (int c = 0; c < cn - 1; c++)
+		channels.push_back(255 - channels[c]);
+
+	// Create ERFilter objects with the 1st and 2nd stage default classifiers
+	Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1("trained_classifierNM1.xml"), 16, 0.00015f, 0.13f, 0.2f, true, 0.1f);
+	Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2("trained_classifierNM2.xml"), 0.5);
+
+	vector<vector<ERStat> > regions(channels.size());
+	// Apply the default cascade classifier to each independent channel (could be done in parallel)
+	cout << "Extracting Class Specific Extremal Regions from " << (int)channels.size() << " channels ..." << endl;
+	cout << "    (...) this may take a while (...)" << endl << endl;
+	for (int c = 0; c < (int)channels.size(); c++)
+	{
+		er_filter1->run(channels[c], regions[c]);
+		er_filter2->run(channels[c], regions[c]);
+	}
+
+	// Detect character groups
+	//cout << "Grouping extracted ERs ... ";
+	vector< vector<Vec2i> > region_groups;
+	vector<Rect> groups_boxes;
+	erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_HORIZ);
+	//erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_ANY, "./trained_classifier_erGrouping.xml", 0.5);
+
+	// draw groups
+	groups_draw(src, groups_boxes);
+	*/
+}
+
 
 #pragma endregion
