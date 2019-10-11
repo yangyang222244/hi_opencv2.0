@@ -14,12 +14,12 @@ using namespace cv;
 //using namespace cv::text;
 
 #pragma region //函数声明by WFL
-void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
-void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
-void Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
-void HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
-void HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
-void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 #pragma endregion
 
 hi_opencv20::hi_opencv20(QWidget *parent)
@@ -222,37 +222,42 @@ void hi_opencv20::on_slider_1()
 	{
 		change = 1;
 		i_by =(int)ui.slider_1->value();
-		Sobel(i_by, image, image1, label_2, ui);
+		m_Sobel(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 52:
 	{
 		change = 1;
 		i_by = (int)ui.slider_1->value();
-		Laplace(i_by, image, image1, label_2, ui);
+		m_Laplace(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 53:
 	{
 		change = 1;
 		i_by = (int)ui.slider_1->value();
-		Canny(i_by, image, image1, label_2, ui);
+		m_Canny(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 54:
 	{
 		change = 1;
 		i_by = (int)ui.slider_1->value();
-		HoughLines(i_by, image, image1, label_2, ui);
+		m_HoughLines(i_by, image, image1, label_2, ui);
 	}
 	case 55:
 	{
 		change = 1;
 		i_by = (int)ui.slider_1->value();
-		HoughCircles(i_by, image, image1, label_2, ui);
+		m_HoughCircles(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 56:
 	{
 		change = 1;
 		i_by = (int)ui.slider_1->value();
-		findContours(i_by, image, image1, label_2, ui);
+		m_findContours(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 61:
 	{
@@ -328,11 +333,13 @@ void hi_opencv20::on_slider_2()
 	ui.output->setWidget(label_2);
 }
 
+/*
 void hi_opencv20::hideSlider()
 {
 	ui.slider_1->hide();
 	ui.slider_2->hide();
 }
+*/
 
 #pragma region //图形平滑
 
@@ -393,7 +400,7 @@ void hi_opencv20::on_Bilateral()
 void hi_opencv20::on_erode()
 {
 	i = 21;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -404,7 +411,7 @@ void hi_opencv20::on_erode()
 void hi_opencv20::on_dilate()
 {
 	i = 22;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -414,7 +421,7 @@ void hi_opencv20::on_dilate()
 void hi_opencv20::on_opening()
 {
 	i = 23;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -424,7 +431,7 @@ void hi_opencv20::on_opening()
 void hi_opencv20::on_closing()
 {
 	i = 24;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -433,7 +440,7 @@ void hi_opencv20::on_closing()
 void hi_opencv20::on_MG()
 {
 	i = 25;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -443,7 +450,7 @@ void hi_opencv20::on_MG()
 void hi_opencv20::on_blackhat()
 {
 	i = 26;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -453,7 +460,7 @@ void hi_opencv20::on_blackhat()
 void hi_opencv20::on_tophat()
 {
 	i = 27;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
@@ -467,7 +474,7 @@ void hi_opencv20::on_tophat()
 void hi_opencv20::on_scale()
 {
 	i = 41;
-	hideSlider();
+	//hideSlider();
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(500);
 	double size;
@@ -480,10 +487,10 @@ void hi_opencv20::on_scale()
 void hi_opencv20::on_rotate()
 {
 	i = 42;
-	hideSlider();
+	//hideSlider();
 	image1 = image.clone();
-	ui.slider_1->setMinimum(-180);
-	ui.slider_1->setMaximum(180);
+	ui.slider_1->setMinimum(0);
+	ui.slider_1->setMaximum(360);
 	ui.slider_1->setValue(0);
 
 	ui.slider_1->show();
@@ -494,17 +501,12 @@ void hi_opencv20::on_rotate()
 
 void hi_opencv20::on_L2R()
 {
-	hideSlider();
+	//hideSlider();
 	//i = 43;
 	ui.slider_1->hide();
 	ui.spinBox_1->hide();
-	if (image1.empty())
-	{
-		image1 = image.clone();
-	}
 
 	image1 = image.clone();
-
 
 	Mat map1, map2;
 	///dst.create(image.size(), image.type());
@@ -536,13 +538,6 @@ void hi_opencv20::on_T2D()
 {
 	ui.slider_1->hide();
 	ui.spinBox_1->hide();
-
-
-	if (image1.empty())
-	{
-		image1 = image.clone();
-	}
-	hideSlider();
 
 	image1 = image.clone();
 
@@ -576,7 +571,7 @@ void hi_opencv20::on_pyr()
 	ui.spinBox_1->hide();
 
 
-	hideSlider();
+	//hideSlider();
 	Mat temp1, temp2, temp3;
 	pyrDown(image, temp1, Size(image.cols / 2, image.rows / 2));
 	pyrDown(temp1, temp2, Size(temp1.cols / 2, temp1.rows / 2));
@@ -610,53 +605,59 @@ void hi_opencv20::on_pyr()
 #pragma region//边缘检测by WFL
 void hi_opencv20::on_Sobel() {
 	i = 51;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-	Sobel(i_by,image,image1,label_2,ui);
+	m_Sobel(i_by,image,image1,label_2,ui);
 }
 void hi_opencv20::on_Laplace() {
 	i = 52;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-    Laplace(i_by,image,image1,label_2,ui);
+    m_Laplace(i_by,image,image1,label_2,ui);
 }
 void hi_opencv20::on_Canny() {
 	i = 53;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-	Canny(i_by, image, image1, label_2, ui);
+	m_Canny(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_HoughLines() {
 	i = 54;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
-	ui.slider_1->show();
-	HoughLines(i_by, image, image1, label_2, ui);
+	ui.slider_1->hide();
+	m_HoughLines(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_HoughCircles() {
 	i = 55;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
-	ui.slider_1->show();
-	HoughCircles(i_by, image, image1, label_2, ui);
+	ui.slider_1->hide();
+	m_HoughCircles(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_findContours() {
 	i = 56;
+	i_by = 3;
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-	findContours(i_by, image, image1, label_2, ui);
+	m_findContours(i_by, image, image1, label_2, ui);
 }
-void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat img1, src_gray, grad;
 	GaussianBlur(image, img1, Size(3, 3), 0, 0, BORDER_DEFAULT);//对原图像进行降噪；
 	cvtColor(img1, src_gray, COLOR_BGR2GRAY);
@@ -680,7 +681,7 @@ void Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class 
 	label_2->resize(QSize(img.width(), img.height()));
 	ui.output->setWidget(label_2);
 }
-void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray, dst;
 	int kernel_size = 3;
 	int scale = by;
@@ -704,7 +705,7 @@ void Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Clas
 	label_2->resize(QSize(img.width(), img.height()));
 	ui.output->setWidget(label_2);
 }
-void Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray;
 	Mat dst, detected_edges;
 	int edgeThresh = 1;
@@ -730,10 +731,9 @@ void Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class 
 	label_2->resize(QSize(img.width(), img.height()));
 	ui.output->setWidget(label_2);
 }
-void HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray;
 	Mat dst, cdst;
-
 	src = image;
 	cvtColor(src, src_gray, COLOR_BGR2GRAY);
 	Canny(src_gray, dst, by, 200, 3);
@@ -745,13 +745,14 @@ void HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20C
 		Vec4i l = lines[i];
 		line(cdst, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 3, LINE_AA);
 	}
+	image1 = cdst;
 	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
 	label_2 = new QLabel();
 	label_2->setPixmap(QPixmap::fromImage(img));
 	label_2->resize(QSize(img.width(), img.height()));
 	ui.output->setWidget(label_2);
 }
-void HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray;
 	//i_by = atoi(ui.lineEdit31->text().toStdString().c_str());
 	src = image;
@@ -764,22 +765,24 @@ void HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 	/// Apply the Hough Transform to find the circles
 	HoughCircles(src_gray, circles, HOUGH_GRADIENT, 1, src_gray.rows / 8, by, 100, 0, 0);
 
-	for (int i = 0; i < circles.size(); i++)
+	for (int ii = 0; ii < circles.size(); ii++)
 	{
-		Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
-		int radius = cvRound(circles[i][2]);
+		Point center(cvRound(circles[ii][0]), cvRound(circles[ii][1]));
+		int radius = cvRound(circles[ii][2]);
 		// circle center
 		circle(src, center, 3, Scalar(0, 255, 0), -1, 8, 0);
 		// circle outline
 		circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
 	}
+	
+	image1 = src;
 	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
 	label_2 = new QLabel();
 	label_2->setPixmap(QPixmap::fromImage(img));
 	label_2->resize(QSize(img.width(), img.height()));
 	ui.output->setWidget(label_2);
 }
-void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray, canny_output;
 	RNG rng(12345);
 	src = image;
@@ -815,6 +818,7 @@ void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
 		circle(drawing, mc[i], 4, color, -1, 8, 0);
 	}
+	image1 = drawing;
 	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
 	label_2 = new QLabel();
 	label_2->setPixmap(QPixmap::fromImage(img));
@@ -950,7 +954,7 @@ void hi_opencv20::on_zhitwo_show()
 	label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(img2));
 	label->resize(QSize(img2.width(), img2.height()));
-	ui.input->setWidget(label);
+	//ui.input->setWidget(label);
 
 
 }
@@ -1049,6 +1053,7 @@ void Hist_and_Backproj(int, void*)
 
 #pragma endregion
 
+#pragma region//目标定位——模板匹配
 
 void hi_opencv20::on_convexHull()
 {
@@ -1177,7 +1182,6 @@ void hi_opencv20::on_fitEllipse()
 	drawing.copyTo(image1);
 }
 
-//目标定位——模板匹配
 void hi_opencv20::on_open2()
 {
 
@@ -1275,8 +1279,7 @@ void hi_opencv20::on_match6()
 	match();
 }
 
-
-
+#pragma endregion
 
 void hi_opencv20::on_init()
 {

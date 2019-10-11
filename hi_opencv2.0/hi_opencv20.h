@@ -15,6 +15,7 @@
 //#include "opencv2/text.hpp"
 #include<vector>
 #include <iostream>
+#include <Open2.h>
 
 class hi_opencv20 : public QMainWindow
 {
@@ -95,6 +96,8 @@ private slots:
 
 
 private:
+
+
 	Ui::hi_opencv20Class ui;
 	Mat image;//显示在第一个框
 	Mat image1;//显示在第二个框
