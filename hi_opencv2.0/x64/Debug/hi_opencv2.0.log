@@ -1,6 +1,2 @@
-﻿  Uic'ing hi_opencv20.ui...
-   C:\Users\w\Desktop\草稿\新建文件夹 (2)\hi_opencv2.0\hi_opencv2.0\hi_opencv20.ui: Warning: The name 'horizontalWidget' (QWidget) is already in use, defaulting to 'horizontalWidget1'.
-  hi_opencv20.cpp
-  main.cpp
-  moc_hi_opencv20.cpp
-  hi_opencv2.0.vcxproj -> C:\Users\w\Desktop\草稿\新建文件夹 (2)\hi_opencv2.0\x64\Debug\hi_opencv2.0.exe
+﻿  hi_opencv20.cpp
+  hi_opencv2.0.vcxproj -> E:\hi_opencv2.0\x64\Debug\hi_opencv2.0.exe

@@ -22,6 +22,10 @@ void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_openc
 void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 #pragma endregion
 
+void w_convexHull(int j,Mat image,Mat image1,QLabel *label_2, Ui::hi_opencv20Class ui);
+void w_rectcircle(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void w_fitEllipse(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+
 hi_opencv20::hi_opencv20(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -244,6 +248,7 @@ void hi_opencv20::on_slider_1()
 		change = 1;
 		i_by = (int)ui.slider_1->value();
 		m_HoughLines(i_by, image, image1, label_2, ui);
+		break;
 	}
 	case 55:
 	{
@@ -261,20 +266,23 @@ void hi_opencv20::on_slider_1()
 	}
 	case 61:
 	{
+		change = 1;
 		j = ui.slider_1->value();
-		on_convexHull();
+		w_convexHull(j, image, image1,label_2,ui);
 		break;
 	}
 	case 62:
 	{
+		change = 1;
 		j = ui.slider_1->value();
-		on_rectcircle();
+		w_rectcircle(j, image, image1, label_2, ui);
 		break;
 	}
 	case 63:
 	{
+		change = 1;
 		j = ui.slider_1->value();
-		on_fitEllipse();
+		w_fitEllipse(j, image, image1, label_2, ui);
 		break;
 	}
 
@@ -333,13 +341,6 @@ void hi_opencv20::on_slider_2()
 	ui.output->setWidget(label_2);
 }
 
-/*
-void hi_opencv20::hideSlider()
-{
-	ui.slider_1->hide();
-	ui.slider_2->hide();
-}
-*/
 
 #pragma region //Í¼ÐÎÆ½»¬
 
@@ -1064,7 +1065,37 @@ void hi_opencv20::on_convexHull()
 	ui.slider_1->show();
 	ui.spinBox_1->show();
 	ui.slider_1->setMaximum(255);
+	ui.slider_1->setValue(10);
 
+}
+
+void hi_opencv20::on_rectcircle()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 62;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+	ui.slider_1->setValue(10);
+}
+
+void hi_opencv20::on_fitEllipse()
+{
+	label_2 = new QLabel();
+	ui.output->setWidget(label_2);
+
+	i = 63;
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+	ui.slider_1->setMaximum(255);
+	ui.slider_1->setValue(10);
+}
+
+void w_convexHull(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui)
+{
+	RNG rng;
 	Mat image_gray, threshold_output;
 	cvtColor(image, image_gray, COLOR_BGR2GRAY);
 	vector<Mat> contours;
@@ -1087,18 +1118,16 @@ void hi_opencv20::on_convexHull()
 		drawContours(drawing, hull, i, color, 1, 8, vector<Vec4i>(), 0, Point());
 	}
 	drawing.copyTo(image1);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
 }
 
-void hi_opencv20::on_rectcircle()
+void w_rectcircle(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui)
 {
-	label_2 = new QLabel();
-	ui.output->setWidget(label_2);
-
-	i = 62;
-	ui.slider_1->show();
-	ui.spinBox_1->show();
-	ui.slider_1->setMaximum(255);
-
+	RNG rng;
 	Mat threshold_output, image_gray;
 	cvtColor(image, image_gray, COLOR_BGR2GRAY);
 	vector<vector<Point> > contours;
@@ -1131,19 +1160,16 @@ void hi_opencv20::on_rectcircle()
 		circle(drawing, center[i], (int)radius[i], color, 2, 8, 0);
 	}
 	drawing.copyTo(image1);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
 }
 
-void hi_opencv20::on_fitEllipse()
+void w_fitEllipse(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui)
 {
-	label_2 = new QLabel();
-	ui.output->setWidget(label_2);
-
-	i = 63;
-	ui.slider_1->show();
-	ui.spinBox_1->show();
-	ui.slider_1->setMaximum(255);
-
-
+	RNG rng;
 	Mat threshold_output, image_gray;
 	cvtColor(image, image_gray, COLOR_BGR2GRAY);
 	vector<vector<Point> > contours;
@@ -1180,7 +1206,13 @@ void hi_opencv20::on_fitEllipse()
 			line(drawing, rect_points[m], rect_points[(m + 1) % 4], color, 1, 8);
 	}
 	drawing.copyTo(image1);
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
 }
+
 
 void hi_opencv20::on_open2()
 {
@@ -1290,5 +1322,9 @@ void hi_opencv20::on_init()
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
 	i = -1;
-
+	if (ui.toolBox->currentIndex() == 8)
+	{
+		label = new QLabel();
+		ui.input->setWidget(label);
+	}
 }
