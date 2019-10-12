@@ -2,6 +2,19 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_hi_opencv20.h"
+#include <QtWidgets/QMainWindow>
+#include <qlineedit.h>
+#include<QGraphicsScene>  
+#include<QGraphicsView>                 //graphicsview类
+#include<opencv2\imgproc\imgproc.hpp>
+#include <opencv2\core\core.hpp>
+#include <opencv2\highgui\highgui.hpp>  //opencv申明
+#include <qfiledialog.h>                //getopenfilename 类申明
+#include <qlabel.h>  //label类
+#include <opencv2/highgui/highgui_c.h>
+//#include "opencv2/text.hpp"
+#include<vector>
+#include <iostream>
 #include <Open2.h>
 
 class hi_opencv20 : public QMainWindow
@@ -81,7 +94,10 @@ private slots:
 
 	void on_init();
 
+
 private:
+
+
 	Ui::hi_opencv20Class ui;
 	Mat image;//显示在第一个框
 	Mat image1;//显示在第二个框
