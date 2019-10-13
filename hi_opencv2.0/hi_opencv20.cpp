@@ -1,6 +1,7 @@
 #include "hi_opencv20.h"
 
-//#include "opencv2/text.hpp"
+#include "opencv2/text.hpp"
+//#include "opencv/video.hpp"
 
 #include  "opencv2/highgui.hpp"
 #include  "opencv2/imgproc.hpp"
@@ -11,7 +12,8 @@
 
 using namespace std;
 using namespace cv;
-//using namespace cv::text;
+using namespace cv::text;
+
 
 #pragma region //º¯ÊýÉùÃ÷by WFL
 void m_Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
