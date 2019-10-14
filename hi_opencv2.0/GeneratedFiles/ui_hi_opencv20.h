@@ -475,6 +475,7 @@ public:
         QObject::connect(btnScale_5, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_HoughLines()));
         QObject::connect(btnScale_7, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_HoughCircles()));
         QObject::connect(btnScale_8, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_findContours()));
+        QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
 
         toolBox->setCurrentIndex(8);
 

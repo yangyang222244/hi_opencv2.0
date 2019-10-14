@@ -91,6 +91,7 @@ private slots:
 	void on_match5();
 	void on_match6();
 
+	void textDetect();
 
 	void on_init();
 

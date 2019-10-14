@@ -1,7 +1,6 @@
 #include "hi_opencv20.h"
 
 #include "opencv2/text.hpp"
-//#include "opencv/video.hpp"
 
 #include  "opencv2/highgui.hpp"
 #include  "opencv2/imgproc.hpp"
@@ -1315,6 +1314,73 @@ void hi_opencv20::on_match6()
 
 #pragma endregion
 
+
+void groups_draw(Mat &src, vector<Rect> &groups)
+{
+	for (int i = (int)groups.size() - 1; i >= 0; i--)
+	{
+		if (src.type() == CV_8UC3)
+			rectangle(src, groups.at(i).tl(), groups.at(i).br(), Scalar(0, 255, 255), 3, 8);
+		else
+			rectangle(src, groups.at(i).tl(), groups.at(i).br(), Scalar(255), 3, 8);
+	}
+}
+
+void hi_opencv20::textDetect()
+{
+	Mat src = image.clone();
+
+	// Extract channels to be processed individually
+	vector<Mat> channels;
+	computeNMChannels(src, channels);
+
+	
+	int cn = (int)channels.size();
+	// Append negative channels to detect ER- (bright regions over dark background)
+	for (int c = 0; c < cn - 1; c++)
+		channels.push_back(255 - channels[c]);
+
+	// Create ERFilter objects with the 1st and 2nd stage default classifiers
+	Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1("trained_classifierNM1.xml"), 16, 0.00015f, 0.13f, 0.2f, true, 0.1f);
+	Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2("trained_classifierNM2.xml"), 0.5);
+
+	vector<vector<ERStat> > regions(channels.size());
+	// Apply the default cascade classifier to each independent channel (could be done in parallel)
+	//cout << "Extracting Class Specific Extremal Regions from " << (int)channels.size() << " channels ..." << endl;
+	//cout << "    (...) this may take a while (...)" << endl << endl;
+
+	
+	for (int c = 0; c < (int)channels.size(); c++)
+	{
+		er_filter1->run(channels[c], regions[c]);
+		er_filter2->run(channels[c], regions[c]);
+	}
+	
+
+	// Detect character groups
+	//cout << "Grouping extracted ERs ... ";
+	vector< vector<Vec2i> > region_groups;
+	vector<Rect> groups_boxes;
+	erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_HORIZ);
+	//erGrouping(src, channels, regions, region_groups, groups_boxes, ERGROUPING_ORIENTATION_ANY, "./trained_classifier_erGrouping.xml", 0.5);
+
+	// draw groups
+	groups_draw(src, groups_boxes);
+	//imshow("grouping", src);
+	
+
+	QImage img = QImage((const unsigned char*)(src.data), src.cols, src.rows, src.cols*image.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+
+	er_filter1.release();
+	er_filter2.release();
+	regions.clear();
+
+}
+
 void hi_opencv20::on_init()
 {
 	label = new QLabel();
@@ -1324,7 +1390,7 @@ void hi_opencv20::on_init()
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
 	i = -1;
-	if (ui.toolBox->currentIndex() == 8)
+	if (ui.toolBox->currentIndex() == 9)
 	{
 		label = new QLabel();
 		ui.input->setWidget(label);
