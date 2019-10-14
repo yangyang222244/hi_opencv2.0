@@ -90,8 +90,11 @@ private slots:
 	void on_match4();
 	void on_match5();
 	void on_match6();
-
-
+	//ÆäËû
+	void on_threshold();
+	void on_copyMakeBorder();
+	void on_pointPolygonTest();
+	//init
 	void on_init();
 
 

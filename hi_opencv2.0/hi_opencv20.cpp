@@ -12,18 +12,27 @@ using namespace cv;
 //using namespace cv::text;
 
 #pragma region //函数声明by WFL
+//边缘检测
 void m_Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void m_Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void m_Canny(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void m_HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+//其他（阈值操作、添加边界、多边形测试）
+void m_threshold(int threshold_value, int threshold_type, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_copyMakeBorder(int ot, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
+void m_pointPolygonTest(int ot, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 #pragma endregion
 
 void w_convexHull(int j,Mat image,Mat image1,QLabel *label_2, Ui::hi_opencv20Class ui);
 void w_rectcircle(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void w_fitEllipse(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 
+//设定全局变量用于阈值操作两个滑条数值的获取
+int yuzhi_type=-1;
+int yuzhi_value=-1;
+String strforyuzhi;
 hi_opencv20::hi_opencv20(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -75,6 +84,7 @@ void hi_opencv20::open()
 
 		//String str  filename.toStdString();//QString字符串中有中文转化成String会有乱码
 		String str = qstr2str(filename);//写了一个qstr2str函数用于转化
+		strforyuzhi = str;
 		image = imread(str);
 		cvtColor(image, image, COLOR_BGR2RGB);
 
@@ -285,7 +295,31 @@ void hi_opencv20::on_slider_1()
 	}
 
 #pragma endregion
-
+#pragma region //其他
+	case 57:
+	{
+		//进度条1控制阈值操作的type,如果为设定value，则value默认为0；
+		change = 1;
+		yuzhi_type = ui.slider_1->value();
+		if (yuzhi_value == -1) {
+			m_threshold(0, yuzhi_type, image, image1, label_2, ui);
+		}
+		else {
+			//该情况为两个滑块均滑动
+			m_threshold(yuzhi_value, yuzhi_type, image, image1, label_2, ui);
+		}
+		//如果未滑动进度条2，那么要么采用默认值0或者采用上一次的值。
+		break;
+	}
+	case 58:
+	{
+		//进度条1控制阈值操作的type,如果为设定value，则value默认为0；
+		change = 1;
+		j = ui.slider_1->value();
+		m_copyMakeBorder(j, image, image1, label_2, ui);
+		break;
+	}
+#pragma endregion
 
 	default:
 		break;
@@ -301,6 +335,7 @@ void hi_opencv20::on_slider_1()
 
 void hi_opencv20::on_slider_2()
 {
+	int change = 0;
 	switch (i)
 	{
 	case 11:
@@ -328,15 +363,33 @@ void hi_opencv20::on_slider_2()
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
 		break;
 	}
+#pragma region //其他
+	case 57:
+	{
+		//进度条2控制阈值操作的value,如果为设定type，则type默认为0；
+		change = 1;
+		yuzhi_value = ui.slider_2->value();
+		if (yuzhi_type == -1) {
+			m_threshold(yuzhi_value, 0, image, image1, label_2, ui);
+		}
+		else {
+			//该情况为两个滑块均滑动
+			m_threshold(yuzhi_value, yuzhi_type, image, image1, label_2, ui);
+		}
+		//如果未滑动进度条1，那么要么采用默认值0或者采用上一次的值。
+		break;
+	}
+#pragma endregion
 	default:
 		break;
 	}
-
-	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
-	label_2 = new QLabel();
-	label_2->setPixmap(QPixmap::fromImage(img));
-	label_2->resize(QSize(img.width(), img.height()));
-	ui.output->setWidget(label_2);
+	if (change == 0) {
+		QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image.channels(), QImage::Format_RGB888);
+		label_2 = new QLabel();
+		label_2->setPixmap(QPixmap::fromImage(img));
+		label_2->resize(QSize(img.width(), img.height()));
+		ui.output->setWidget(label_2);
+	}
 }
 
 
@@ -827,7 +880,156 @@ void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_openc
 #pragma endregion
 
 #pragma region//其他by WFL
+void hi_opencv20::on_threshold() {
+	i = 57;
+	//第一个滑块选择阈值类型
+	//第二个滑块选择阈值大小
+	ui.slider_1->setMinimum(0);
+	ui.slider_1->setMaximum(4);
+	ui.slider_1->setValue(0);
+	ui.slider_1->show();
+	ui.slider_2->setMinimum(0);
+	ui.slider_2->setMaximum(255);
+	ui.slider_2->setValue(0);
+	ui.slider_2->show();
+	m_threshold(230, 2, image, image1, label_2, ui);
+}
+void hi_opencv20::on_copyMakeBorder() {
+	i = 58;
+	//第一个滑块选择阈值类型
+	//第二个滑块选择阈值大小
+	ui.slider_2->hide();
+	ui.slider_1->setMinimum(0);
+	ui.slider_1->setMaximum(1);
+	ui.slider_1->setValue(0);
+	ui.slider_1->show();
+	m_copyMakeBorder(0, image, image1, label_2, ui);
+}
+void hi_opencv20::on_pointPolygonTest() {
+	ui.slider_1->hide();
+	ui.slider_2->hide();
+	m_pointPolygonTest(0, image, image1, label_2, ui);
+}
+void m_threshold(int threshold_value,int threshold_type,Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	// ot 指的是所需要进行的阈值操作
+	//滑动条2指的是阈值大小
+	/* 0: 二进制阈值
+	 1: 反二进制阈值
+	 2: 截断阈值
+	 3: 0阈值
+	 4: 反0阈值
+   */
 
+	/// 全局变量定义及赋值
+	threshold_value = 0;//阈值大小，默认为0
+	threshold_type = 3;//阈值操作类型，默认为0阈值
+	int const max_value = 255;
+	int const max_type = 4;
+	int const max_BINARY_value = 255;
+	Mat src, src_gray, dst;
+	src = imread(strforyuzhi,1);
+	//dst.create(src.size(), src.type());
+	/// 将图片转换成灰度图片
+	cvtColor(src,dst, COLOR_BGR2GRAY);
+
+	/// 初始化自定义的阈值函数
+
+	threshold(dst, dst, threshold_value, 255, threshold_type);
+	image1 = dst;
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void m_copyMakeBorder(int ot, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	//ot的取值为0或者1
+	Mat src, dst;
+	int top, bottom, left, right;
+	Scalar value;
+	RNG rng(12345);
+	src = image;
+	top = (int)(0.05*src.rows); bottom = (int)(0.05*src.rows);
+	left = (int)(0.05*src.cols); right = (int)(0.05*src.cols);
+	value = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+	int borderType = ot;
+	copyMakeBorder(src, dst, top, bottom, left, right, borderType, value);
+	image1 = dst;
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
+void m_pointPolygonTest(int ot, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
+	const int r = 100;
+    Mat src = Mat::zeros(Size(4 * r, 4 * r), CV_8UC1);
+
+	/// 绘制一系列点创建一个轮廓:
+	vector<Point2f> vert(6);
+
+	vert[0] = Point(1.5*r, 1.34*r);
+	vert[1] = Point(1 * r, 2 * r);
+	vert[2] = Point(1.5*r, 2.866*r);
+	vert[3] = Point(2.5*r, 2.866*r);
+	vert[4] = Point(3 * r, 2 * r);
+	vert[5] = Point(2.5*r, 1.34*r);
+
+	/// 在src内部绘制
+	for (int j = 0; j < 6; j++)
+	{
+		line(src, vert[j], vert[(j + 1) % 6], Scalar(255), 3, 8);
+	}
+
+	/// 得到轮廓
+	vector<vector<Point> > contours; vector<Vec4i> hierarchy;
+	Mat src_copy = src.clone();
+
+	findContours(src_copy, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+	/// 计算到轮廓的距离
+	Mat raw_dist(src.size(), CV_32FC1);
+
+	for (int j = 0; j < src.rows; j++)
+	{
+		for (int i = 0; i < src.cols; i++)
+		{
+			raw_dist.at<float>(j, i) = pointPolygonTest(contours[0], Point2f(i, j), true);
+		}
+	}
+
+	double minVal; double maxVal;
+	minMaxLoc(raw_dist, &minVal, &maxVal, 0, 0, Mat());
+	minVal = abs(minVal); maxVal = abs(maxVal);
+
+	/// 图形化的显示距离
+	Mat drawing = Mat::zeros(src.size(), CV_8UC3);
+
+	for (int j = 0; j < src.rows; j++)
+	{
+		for (int i = 0; i < src.cols; i++)
+		{
+			if (raw_dist.at<float>(j, i) < 0)
+			{
+				drawing.at<Vec3b>(j, i)[0] = 255 - (int)abs(raw_dist.at<float>(j, i)) * 255 / minVal;
+			}
+			else if (raw_dist.at<float>(j, i) > 0)
+			{
+				drawing.at<Vec3b>(j, i)[2] = 255 - (int)raw_dist.at<float>(j, i) * 255 / maxVal;
+			}
+			else
+			{
+				drawing.at<Vec3b>(j, i)[0] = 255; drawing.at<Vec3b>(j, i)[1] = 255; drawing.at<Vec3b>(j, i)[2] = 255;
+			}
+		}
+	}
+	image1 = drawing;
+	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
+	label_2 = new QLabel();
+	label_2->setPixmap(QPixmap::fromImage(img));
+	label_2->resize(QSize(img.width(), img.height()));
+	ui.output->setWidget(label_2);
+}
 
 #pragma endregion
 
