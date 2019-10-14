@@ -1,10 +1,8 @@
-#include "hi_opencv20.h"
 
 //#include "opencv2/text.hpp"
-
 #include  "opencv2/highgui.hpp"
 #include  "opencv2/imgproc.hpp"
-
+#include "hi_opencv20.h"
 #include  <vector>
 #include  <iostream>
 #include  <iomanip>
@@ -822,6 +820,12 @@ void findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 	ui.output->setWidget(label_2);
 }
 #pragma endregion
+
+#pragma region//其他by WFL
+
+
+#pragma endregion
+
 
 #pragma region //直方图
 

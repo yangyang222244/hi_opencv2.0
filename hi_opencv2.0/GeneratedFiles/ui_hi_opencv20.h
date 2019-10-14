@@ -295,16 +295,14 @@ public:
         toolBox->addItem(page_6, QString::fromUtf8("\346\250\241\346\235\277\345\214\271\351\205\215"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
-        page_7->setGeometry(QRect(0, 0, 180, 216));
+        page_7->setGeometry(QRect(0, 0, 180, 242));
         btnTextDetection = new QPushButton(page_7);
         btnTextDetection->setObjectName(QStringLiteral("btnTextDetection"));
         btnTextDetection->setGeometry(QRect(0, 0, 181, 23));
-        toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\345\256\203"));
+        toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\344\273\226"));
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
         toolBox->addItem(page_8, QString::fromUtf8("\345\205\263\351\227\255"));
-        page_7->setGeometry(QRect(0, 0, 180, 242));
-        toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\344\273\226"));
 
         horizontalLayout_2->addWidget(toolBox);
 
@@ -532,7 +530,9 @@ public:
         pushButton_13->setText(QApplication::translate("hi_opencv20Class", "\345\214\271\351\205\215\346\226\271\346\263\225\344\272\224", Q_NULLPTR));
         pushButton_14->setText(QApplication::translate("hi_opencv20Class", "\345\214\271\351\205\215\346\226\271\346\263\225\345\205\255", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_6), QApplication::translate("hi_opencv20Class", "\346\250\241\346\235\277\345\214\271\351\205\215", Q_NULLPTR));
+        btnTextDetection->setText(QApplication::translate("hi_opencv20Class", "\346\226\207\345\255\227\346\243\200\346\265\213", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "\345\205\266\344\273\226", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_8), QApplication::translate("hi_opencv20Class", "\345\205\263\351\227\255", Q_NULLPTR));
     } // retranslateUi
 
 };
