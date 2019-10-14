@@ -336,7 +336,7 @@ public:
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 358, 302));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 358, 306));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -351,7 +351,7 @@ public:
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 357, 302));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 357, 306));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -492,7 +492,7 @@ public:
         QObject::connect(btnTextDetection_4, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_pointPolygonTest()));
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
 
-        toolBox->setCurrentIndex(7);
+        toolBox->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);
