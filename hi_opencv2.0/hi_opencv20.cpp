@@ -38,7 +38,7 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 	ui.slider_2->hide();
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
-
+	ui.toolBox->hide();
 	open2 = new Open2;
 	connect(open2, SIGNAL(sendsignal(QString)), this, SLOT(on_receive(QString)));
 }
@@ -92,6 +92,7 @@ void hi_opencv20::open()
 		w1 = image.cols* t;
 		cv::resize(image, image, Size(w1, h1));
 	}
+	ui.toolBox->show();
 	QImage img = QImage((const unsigned char*)(image.data), image.cols, image.rows, image.cols*image.channels(), QImage::Format_RGB888);
 	label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(img));
@@ -1030,12 +1031,12 @@ void hi_opencv20::on_zhione_show()
 
 	histImage.copyTo(image1);
 
-	//double m = ui.input->height();
-	//double n = ui.input->width();
+	int m = image.rows;
+	int n = image.cols;
 	//image_fit(histImage, m, n);
 	//h1 = histImage.rows * t;
 	//w1 = histImage.cols* t;
-	//cv::resize(histImage, histImage, Size(w1, h1));
+	cv::resize(histImage, histImage, Size(n, m));
 
 	QImage img1 = QImage((const unsigned char*)(histImage.data), histImage.cols, histImage.rows, QImage::Format_RGB888);
 	label_2 = new QLabel();
