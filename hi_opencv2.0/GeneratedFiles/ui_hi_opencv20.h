@@ -91,7 +91,6 @@ public:
     QPushButton *btnTextDetection;
     QPushButton *btnTextDetection_2;
     QPushButton *btnTextDetection_3;
-    QPushButton *btnTextDetection_4;
     QWidget *page_8;
     QVBoxLayout *verticalLayout_2;
     QWidget *horizontalWidget;
@@ -149,7 +148,7 @@ public:
         toolBox->setFrameShape(QFrame::NoFrame);
         page1 = new QWidget();
         page1->setObjectName(QStringLiteral("page1"));
-        page1->setGeometry(QRect(0, 0, 180, 216));
+        page1->setGeometry(QRect(0, 0, 98, 28));
         layoutWidget = new QWidget(page1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(0, 10, 181, 171));
@@ -181,7 +180,7 @@ public:
         toolBox->addItem(page1, QString::fromUtf8("\345\233\276\345\203\217\345\271\263\346\273\221"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 180, 216));
+        page_3->setGeometry(QRect(0, 0, 98, 28));
         btnErode = new QPushButton(page_3);
         btnErode->setObjectName(QStringLiteral("btnErode"));
         btnErode->setGeometry(QRect(0, 0, 181, 23));
@@ -206,7 +205,7 @@ public:
         toolBox->addItem(page_3, QString::fromUtf8("\345\275\242\346\200\201\345\217\230\346\215\242"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 180, 216));
+        page_2->setGeometry(QRect(0, 0, 98, 28));
         pushButton_zhi_1 = new QPushButton(page_2);
         pushButton_zhi_1->setObjectName(QStringLiteral("pushButton_zhi_1"));
         pushButton_zhi_1->setGeometry(QRect(0, 20, 181, 28));
@@ -219,7 +218,7 @@ public:
         toolBox->addItem(page_2, QString::fromUtf8("\347\233\264\346\226\271\345\233\276"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 180, 216));
+        page->setGeometry(QRect(0, 0, 98, 28));
         btnScale = new QPushButton(page);
         btnScale->setObjectName(QStringLiteral("btnScale"));
         btnScale->setGeometry(QRect(0, 0, 181, 23));
@@ -238,7 +237,7 @@ public:
         toolBox->addItem(page, QString::fromUtf8("\345\233\276\345\203\217\345\217\230\345\275\242"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 180, 216));
+        page_4->setGeometry(QRect(0, 0, 98, 28));
         btnScale_2 = new QPushButton(page_4);
         btnScale_2->setObjectName(QStringLiteral("btnScale_2"));
         btnScale_2->setGeometry(QRect(0, 0, 181, 23));
@@ -260,7 +259,7 @@ public:
         toolBox->addItem(page_4, QString::fromUtf8("\350\276\271\347\274\230\346\243\200\346\265\213"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 180, 216));
+        page_5->setGeometry(QRect(0, 0, 98, 28));
         pushButton_5 = new QPushButton(page_5);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(0, 20, 181, 23));
@@ -273,7 +272,7 @@ public:
         toolBox->addItem(page_5, QString::fromUtf8("\347\233\256\346\240\207\345\256\232\344\275\215"));
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 180, 216));
+        page_6->setGeometry(QRect(0, 0, 98, 28));
         pushButton_8 = new QPushButton(page_6);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setGeometry(QRect(0, 0, 181, 23));
@@ -308,9 +307,6 @@ public:
         btnTextDetection_3 = new QPushButton(page_7);
         btnTextDetection_3->setObjectName(QStringLiteral("btnTextDetection_3"));
         btnTextDetection_3->setGeometry(QRect(0, 60, 181, 23));
-        btnTextDetection_4 = new QPushButton(page_7);
-        btnTextDetection_4->setObjectName(QStringLiteral("btnTextDetection_4"));
-        btnTextDetection_4->setGeometry(QRect(0, 90, 181, 23));
         toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\344\273\226"));
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
@@ -409,6 +405,7 @@ public:
         spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
         spinBox_2->setMinimumSize(QSize(60, 20));
         spinBox_2->setMaximumSize(QSize(60, 20));
+        spinBox_2->setMaximum(255);
 
         horizontalLayout_5->addWidget(spinBox_2);
 
@@ -489,7 +486,6 @@ public:
         QObject::connect(btnScale_8, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_findContours()));
         QObject::connect(btnTextDetection_2, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_threshold()));
         QObject::connect(btnTextDetection_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_copyMakeBorder()));
-        QObject::connect(btnTextDetection_4, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_pointPolygonTest()));
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
 
         toolBox->setCurrentIndex(8);
@@ -557,7 +553,6 @@ public:
         btnTextDetection->setText(QApplication::translate("hi_opencv20Class", "\346\226\207\345\255\227\346\243\200\346\265\213", Q_NULLPTR));
         btnTextDetection_2->setText(QApplication::translate("hi_opencv20Class", "\351\230\210\345\200\274\346\223\215\344\275\234", Q_NULLPTR));
         btnTextDetection_3->setText(QApplication::translate("hi_opencv20Class", "\346\267\273\345\212\240\350\276\271\347\225\214", Q_NULLPTR));
-        btnTextDetection_4->setText(QApplication::translate("hi_opencv20Class", "\345\244\232\350\276\271\345\275\242\346\265\213\350\257\225", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "\345\205\266\344\273\226", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_8), QApplication::translate("hi_opencv20Class", "\345\205\263\351\227\255", Q_NULLPTR));
     } // retranslateUi
