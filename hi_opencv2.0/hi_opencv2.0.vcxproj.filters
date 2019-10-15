@@ -52,4 +52,8 @@
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="trained_classifierNM1.xml" />
+    <Xml Include="trained_classifierNM2.xml" />
+  </ItemGroup>
 </Project>

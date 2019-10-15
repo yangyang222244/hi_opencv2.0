@@ -597,6 +597,45 @@
          <string>文字检测</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="btnTextDetection_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>阈值操作</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnTextDetection_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>60</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>添加边界</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnTextDetection_4">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>90</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>多边形测试</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_8">
        <property name="geometry">
@@ -886,7 +925,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>108</x>
-     <y>138</y>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>272</x>
@@ -901,8 +940,8 @@
    <slot>on_gaussian()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>106</x>
-     <y>178</y>
+     <x>108</x>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>322</x>
@@ -918,7 +957,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>108</x>
-     <y>218</y>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>441</x>
@@ -934,7 +973,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>108</x>
-     <y>258</y>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>531</x>
@@ -965,8 +1004,8 @@
    <slot>on_erode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>142</y>
+     <x>157</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -981,8 +1020,8 @@
    <slot>on_dilate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>96</x>
-     <y>172</y>
+     <x>112</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -997,8 +1036,8 @@
    <slot>on_opening()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>202</y>
+     <x>145</x>
+     <y>113</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1013,8 +1052,8 @@
    <slot>on_closing()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>232</y>
+     <x>136</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1029,8 +1068,8 @@
    <slot>on_MG()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>262</y>
+     <x>136</x>
+     <y>173</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1045,8 +1084,8 @@
    <slot>on_tophat()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>78</x>
-     <y>292</y>
+     <x>94</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1061,8 +1100,8 @@
    <slot>on_blackhat()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>90</x>
-     <y>322</y>
+     <x>106</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1077,8 +1116,8 @@
    <slot>on_scale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>194</y>
+     <x>159</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1093,8 +1132,8 @@
    <slot>on_rotate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>115</x>
-     <y>224</y>
+     <x>131</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1109,8 +1148,8 @@
    <slot>on_L2R()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>105</x>
-     <y>254</y>
+     <x>121</x>
+     <y>113</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1125,8 +1164,8 @@
    <slot>on_T2D()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>284</y>
+     <x>146</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1141,8 +1180,8 @@
    <slot>on_pyr()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>87</x>
-     <y>314</y>
+     <x>103</x>
+     <y>173</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -1157,8 +1196,8 @@
    <slot>on_zhione_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>193</y>
+     <x>123</x>
+     <y>78</y>
     </hint>
     <hint type="destinationlabel">
      <x>213</x>
@@ -1173,8 +1212,8 @@
    <slot>on_zhitwo_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>164</x>
-     <y>233</y>
+     <x>180</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
      <x>164</x>
@@ -1189,8 +1228,8 @@
    <slot>on_zhithree_show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>131</x>
-     <y>273</y>
+     <x>147</x>
+     <y>158</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -1206,7 +1245,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>757</x>
-     <y>490</y>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>674</x>
@@ -1222,7 +1261,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>757</x>
-     <y>534</y>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
      <x>733</x>
@@ -1253,8 +1292,8 @@
    <slot>on_convexHull()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>266</y>
+     <x>127</x>
+     <y>73</y>
     </hint>
     <hint type="destinationlabel">
      <x>121</x>
@@ -1269,8 +1308,8 @@
    <slot>on_rectcircle()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>149</x>
-     <y>316</y>
+     <x>165</x>
+     <y>123</y>
     </hint>
     <hint type="destinationlabel">
      <x>65</x>
@@ -1285,8 +1324,8 @@
    <slot>on_fitEllipse()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>123</x>
-     <y>376</y>
+     <x>139</x>
+     <y>183</y>
     </hint>
     <hint type="destinationlabel">
      <x>316</x>
@@ -1301,8 +1340,8 @@
    <slot>on_open2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>282</y>
+     <x>124</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
      <x>412</x>
@@ -1317,8 +1356,8 @@
    <slot>on_match1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>142</x>
-     <y>312</y>
+     <x>158</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>483</x>
@@ -1333,8 +1372,8 @@
    <slot>on_match2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>112</x>
-     <y>342</y>
+     <x>128</x>
+     <y>113</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
@@ -1349,8 +1388,8 @@
    <slot>on_match3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>382</y>
+     <x>170</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
      <x>441</x>
@@ -1365,8 +1404,8 @@
    <slot>on_match4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>118</x>
-     <y>412</y>
+     <x>134</x>
+     <y>173</y>
     </hint>
     <hint type="destinationlabel">
      <x>61</x>
@@ -1381,8 +1420,8 @@
    <slot>on_match5()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>442</y>
+     <x>100</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>146</x>
@@ -1397,8 +1436,8 @@
    <slot>on_match6()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>170</x>
-     <y>472</y>
+     <x>186</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
      <x>121</x>
@@ -1413,12 +1452,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>607</x>
-     <y>481</y>
+     <x>757</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
-     <x>421</x>
-     <y>481</y>
+     <x>451</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -1429,12 +1468,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>607</x>
-     <y>525</y>
+     <x>757</x>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
-     <x>421</x>
-     <y>525</y>
+     <x>451</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -1445,12 +1484,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>421</x>
-     <y>481</y>
+     <x>451</x>
+     <y>414</y>
     </hint>
     <hint type="destinationlabel">
-     <x>607</x>
-     <y>481</y>
+     <x>757</x>
+     <y>415</y>
     </hint>
    </hints>
   </connection>
@@ -1461,12 +1500,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>421</x>
-     <y>525</y>
+     <x>451</x>
+     <y>460</y>
     </hint>
     <hint type="destinationlabel">
-     <x>607</x>
-     <y>525</y>
+     <x>757</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -1493,8 +1532,8 @@
    <slot>on_Sobel()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>33</x>
-     <y>213</y>
+     <x>49</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
      <x>-113</x>
@@ -1509,8 +1548,8 @@
    <slot>on_Laplace()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>240</y>
+     <x>111</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>-15</x>
@@ -1525,8 +1564,8 @@
    <slot>on_Canny()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>128</x>
-     <y>267</y>
+     <x>144</x>
+     <y>113</y>
     </hint>
     <hint type="destinationlabel">
      <x>-21</x>
@@ -1541,8 +1580,8 @@
    <slot>on_HoughLines()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>300</y>
+     <x>100</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
      <x>-5</x>
@@ -1557,8 +1596,8 @@
    <slot>on_HoughCircles()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>327</y>
+     <x>120</x>
+     <y>173</y>
     </hint>
     <hint type="destinationlabel">
      <x>5</x>
@@ -1573,12 +1612,76 @@
    <slot>on_findContours()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>128</x>
-     <y>358</y>
+     <x>144</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>-35</x>
      <y>410</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTextDetection_2</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_threshold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTextDetection_3</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_copyMakeBorder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>48</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTextDetection_4</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>on_pointPolygonTest()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>106</x>
+     <y>343</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>42</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTextDetection</sender>
+   <signal>clicked()</signal>
+   <receiver>hi_opencv20Class</receiver>
+   <slot>textDetect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-132</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>
@@ -1626,5 +1729,9 @@
   <slot>on_Canny()</slot>
   <slot>on_HoughLines()</slot>
   <slot>on_findContours()</slot>
+  <slot>on_threshold()</slot>
+  <slot>on_copyMakeBorder()</slot>
+  <slot>on_pointPolygonTest()</slot>
+  <slot>textDetect()</slot>
  </slots>
 </ui>
