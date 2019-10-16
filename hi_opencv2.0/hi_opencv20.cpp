@@ -102,6 +102,8 @@ void hi_opencv20::open()
 	label_2 = new QLabel();
 	ui.output->setWidget(label_2);
 
+	ui.actionsave->setEnabled(true);
+
 }
 
 void hi_opencv20::save() {
@@ -1038,7 +1040,7 @@ void hi_opencv20::on_zhione_show()
 	//w1 = histImage.cols* t;
 	cv::resize(histImage, histImage, Size(n, m));
 
-	QImage img1 = QImage((const unsigned char*)(histImage.data), histImage.cols, histImage.rows, QImage::Format_RGB888);
+	QImage img1 = QImage((const unsigned char*)(histImage.data), histImage.cols, histImage.rows, histImage.cols*image.channels(), QImage::Format_RGB888);
 	label_2 = new QLabel();
 	label_2->setPixmap(QPixmap::fromImage(img1));
 	label_2->resize(QSize(img1.width(), img1.height()));
@@ -1046,7 +1048,7 @@ void hi_opencv20::on_zhione_show()
 
 
 
-	QImage img = QImage((const unsigned char*)(image2.data), image2.cols, image2.rows, QImage::Format_RGB888);
+	QImage img = QImage((const unsigned char*)(image2.data), image2.cols, image2.rows, image2.cols*image.channels(), QImage::Format_RGB888);
 	//ui.input->setPixmap(QPixmap::fromImage(img));
 
 }

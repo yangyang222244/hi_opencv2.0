@@ -123,6 +123,7 @@ public:
         actionopen->setObjectName(QStringLiteral("actionopen"));
         actionsave = new QAction(hi_opencv20Class);
         actionsave->setObjectName(QStringLiteral("actionsave"));
+        actionsave->setEnabled(false);
         actionopen_2 = new QAction(hi_opencv20Class);
         actionopen_2->setObjectName(QStringLiteral("actionopen_2"));
         actionsave_2 = new QAction(hi_opencv20Class);
@@ -148,7 +149,7 @@ public:
         toolBox->setFrameShape(QFrame::NoFrame);
         page1 = new QWidget();
         page1->setObjectName(QStringLiteral("page1"));
-        page1->setGeometry(QRect(0, 0, 180, 180));
+        page1->setGeometry(QRect(0, 0, 180, 216));
         layoutWidget = new QWidget(page1);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(0, 10, 181, 171));
@@ -180,7 +181,7 @@ public:
         toolBox->addItem(page1, QString::fromUtf8("\345\233\276\345\203\217\345\271\263\346\273\221"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 180, 180));
+        page_3->setGeometry(QRect(0, 0, 180, 216));
         btnErode = new QPushButton(page_3);
         btnErode->setObjectName(QStringLiteral("btnErode"));
         btnErode->setGeometry(QRect(0, 0, 181, 23));
@@ -205,7 +206,7 @@ public:
         toolBox->addItem(page_3, QString::fromUtf8("\345\275\242\346\200\201\345\217\230\346\215\242"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 180, 180));
+        page_2->setGeometry(QRect(0, 0, 180, 216));
         pushButton_zhi_1 = new QPushButton(page_2);
         pushButton_zhi_1->setObjectName(QStringLiteral("pushButton_zhi_1"));
         pushButton_zhi_1->setGeometry(QRect(0, 20, 181, 28));
@@ -218,7 +219,7 @@ public:
         toolBox->addItem(page_2, QString::fromUtf8("\347\233\264\346\226\271\345\233\276"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 180, 180));
+        page->setGeometry(QRect(0, 0, 180, 216));
         btnScale = new QPushButton(page);
         btnScale->setObjectName(QStringLiteral("btnScale"));
         btnScale->setGeometry(QRect(0, 0, 181, 23));
@@ -237,7 +238,7 @@ public:
         toolBox->addItem(page, QString::fromUtf8("\345\233\276\345\203\217\345\217\230\345\275\242"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 180, 180));
+        page_4->setGeometry(QRect(0, 0, 180, 216));
         btnScale_2 = new QPushButton(page_4);
         btnScale_2->setObjectName(QStringLiteral("btnScale_2"));
         btnScale_2->setGeometry(QRect(0, 0, 181, 23));
@@ -259,7 +260,7 @@ public:
         toolBox->addItem(page_4, QString::fromUtf8("\350\276\271\347\274\230\346\243\200\346\265\213"));
         page_5 = new QWidget();
         page_5->setObjectName(QStringLiteral("page_5"));
-        page_5->setGeometry(QRect(0, 0, 180, 180));
+        page_5->setGeometry(QRect(0, 0, 180, 216));
         pushButton_5 = new QPushButton(page_5);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(0, 20, 181, 23));
@@ -272,7 +273,7 @@ public:
         toolBox->addItem(page_5, QString::fromUtf8("\347\233\256\346\240\207\345\256\232\344\275\215"));
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
-        page_6->setGeometry(QRect(0, 0, 180, 180));
+        page_6->setGeometry(QRect(0, 0, 180, 216));
         pushButton_8 = new QPushButton(page_6);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setGeometry(QRect(0, 0, 181, 23));
@@ -297,7 +298,7 @@ public:
         toolBox->addItem(page_6, QString::fromUtf8("\346\250\241\346\235\277\345\214\271\351\205\215"));
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
-        page_7->setGeometry(QRect(0, 0, 180, 180));
+        page_7->setGeometry(QRect(0, 0, 180, 216));
         btnTextDetection = new QPushButton(page_7);
         btnTextDetection->setObjectName(QStringLiteral("btnTextDetection"));
         btnTextDetection->setGeometry(QRect(0, 0, 181, 23));
@@ -310,7 +311,7 @@ public:
         toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\344\273\226"));
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
-        page_8->setGeometry(QRect(0, 0, 180, 180));
+        page_8->setGeometry(QRect(0, 0, 180, 216));
         toolBox->addItem(page_8, QString::fromUtf8("\345\205\263\351\227\255"));
 
         horizontalLayout_2->addWidget(toolBox, 0, Qt::AlignTop);
@@ -332,7 +333,7 @@ public:
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 352, 469));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 358, 502));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -347,7 +348,7 @@ public:
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 352, 469));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 357, 502));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -488,7 +489,7 @@ public:
         QObject::connect(btnTextDetection_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_copyMakeBorder()));
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
 
-        toolBox->setCurrentIndex(0);
+        toolBox->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);

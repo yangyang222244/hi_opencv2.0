@@ -33,7 +33,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page1">
        <property name="geometry">
@@ -41,7 +41,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <property name="toolTip">
@@ -97,7 +97,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -201,7 +201,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -253,7 +253,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -331,7 +331,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -422,7 +422,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -474,7 +474,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -578,7 +578,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -630,7 +630,7 @@
          <x>0</x>
          <y>0</y>
          <width>180</width>
-         <height>180</height>
+         <height>216</height>
         </rect>
        </property>
        <attribute name="label">
@@ -663,8 +663,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>352</width>
-              <height>469</height>
+              <width>358</width>
+              <height>502</height>
              </rect>
             </property>
            </widget>
@@ -699,8 +699,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>352</width>
-              <height>469</height>
+              <width>357</width>
+              <height>502</height>
              </rect>
             </property>
            </widget>
@@ -867,6 +867,9 @@
    </property>
   </action>
   <action name="actionsave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>保存</string>
    </property>
