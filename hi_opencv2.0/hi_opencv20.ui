@@ -40,8 +40,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <property name="toolTip">
@@ -96,8 +96,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -200,8 +200,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -252,8 +252,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -330,8 +330,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -421,8 +421,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -473,8 +473,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
-         <height>216</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -582,7 +582,7 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>其他</string>
+        <string>应用</string>
        </attribute>
        <widget class="QPushButton" name="btnTextDetection">
         <property name="geometry">
