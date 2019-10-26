@@ -494,7 +494,7 @@ public:
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
         QObject::connect(bntFlawDetect, SIGNAL(clicked()), hi_opencv20Class, SLOT(flawDetect()));
 
-        toolBox->setCurrentIndex(7);
+        toolBox->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);
