@@ -91,6 +91,7 @@ public:
     QPushButton *btnTextDetection;
     QPushButton *btnTextDetection_2;
     QPushButton *btnTextDetection_3;
+    QPushButton *bntFlawDetect;
     QWidget *page_8;
     QVBoxLayout *verticalLayout_2;
     QWidget *horizontalWidget;
@@ -308,7 +309,10 @@ public:
         btnTextDetection_3 = new QPushButton(page_7);
         btnTextDetection_3->setObjectName(QStringLiteral("btnTextDetection_3"));
         btnTextDetection_3->setGeometry(QRect(0, 60, 181, 23));
-        toolBox->addItem(page_7, QString::fromUtf8("\345\205\266\344\273\226"));
+        bntFlawDetect = new QPushButton(page_7);
+        bntFlawDetect->setObjectName(QStringLiteral("bntFlawDetect"));
+        bntFlawDetect->setGeometry(QRect(0, 90, 181, 23));
+        toolBox->addItem(page_7, QString::fromUtf8("\345\212\237\350\203\275\345\272\224\347\224\250"));
         page_8 = new QWidget();
         page_8->setObjectName(QStringLiteral("page_8"));
         page_8->setGeometry(QRect(0, 0, 180, 216));
@@ -488,8 +492,9 @@ public:
         QObject::connect(btnTextDetection_2, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_threshold()));
         QObject::connect(btnTextDetection_3, SIGNAL(clicked()), hi_opencv20Class, SLOT(on_copyMakeBorder()));
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
+        QObject::connect(bntFlawDetect, SIGNAL(clicked()), hi_opencv20Class, SLOT(flawDetect()));
 
-        toolBox->setCurrentIndex(8);
+        toolBox->setCurrentIndex(7);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);
@@ -554,7 +559,8 @@ public:
         btnTextDetection->setText(QApplication::translate("hi_opencv20Class", "\346\226\207\345\255\227\346\243\200\346\265\213", Q_NULLPTR));
         btnTextDetection_2->setText(QApplication::translate("hi_opencv20Class", "\351\230\210\345\200\274\346\223\215\344\275\234", Q_NULLPTR));
         btnTextDetection_3->setText(QApplication::translate("hi_opencv20Class", "\346\267\273\345\212\240\350\276\271\347\225\214", Q_NULLPTR));
-        toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "\345\205\266\344\273\226", Q_NULLPTR));
+        bntFlawDetect->setText(QApplication::translate("hi_opencv20Class", "\347\221\225\347\226\265\346\243\200\346\265\213", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_7), QApplication::translate("hi_opencv20Class", "\345\212\237\350\203\275\345\272\224\347\224\250", Q_NULLPTR));
         toolBox->setItemText(toolBox->indexOf(page_8), QApplication::translate("hi_opencv20Class", "\345\205\263\351\227\255", Q_NULLPTR));
     } // retranslateUi
 

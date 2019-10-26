@@ -90,11 +90,11 @@ private slots:
 	void on_match4();
 	void on_match5();
 	void on_match6();
-	//其他
+	//功能应用
 	void textDetect();
 	void on_threshold();
 	void on_copyMakeBorder();
-
+	void flawDetect();
 	//init
 
 	

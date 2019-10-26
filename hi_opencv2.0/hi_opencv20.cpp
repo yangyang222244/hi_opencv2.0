@@ -29,6 +29,10 @@ void w_convexHull(int j,Mat image,Mat image1,QLabel *label_2, Ui::hi_opencv20Cla
 void w_rectcircle(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 void w_fitEllipse(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 
+//函数声明
+Mat flawDetecting(int size, int area, Mat imgOringin);
+
+
 hi_opencv20::hi_opencv20(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -293,7 +297,7 @@ void hi_opencv20::on_slider_1()
 	}
 
 #pragma endregion
-#pragma region //其他
+#pragma region //功能应用
 	case 57:
 	{
 		int j = ui.slider_2->value();
@@ -309,7 +313,15 @@ void hi_opencv20::on_slider_1()
 		m_copyMakeBorder(j, image, image1, label_2, ui);
 		break;
 	}
+	case 84:
+	{
+		int size = ui.slider_1->value();
+		int area = ui.slider_2->value();
+		image1 = flawDetecting(size, area, image2);
+		break;
+	}
 #pragma endregion
+
 
 	default:
 		break;
@@ -353,12 +365,19 @@ void hi_opencv20::on_slider_2()
 		cv::bilateralFilter(image, image1, j, j * 2, j / 2);
 		break;
 	}
-#pragma region //其他
+#pragma region //功能应用
 	case 57:
 	{
 		int j = ui.slider_2->value();
 		int k = ui.slider_1->value();
 		threshold(image, image1, j, 255, k);
+		break;
+	}
+	case 84:
+	{
+		int size = ui.slider_1->value();
+		int area = ui.slider_2->value();
+		image1 = flawDetecting(size, area, image2);
 		break;
 	}
 #pragma endregion
@@ -861,7 +880,7 @@ void m_findContours(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_openc
 }
 #pragma endregion
 
-#pragma region//其他by WFL
+#pragma region//功能应用
 void hi_opencv20::on_threshold() {
 	i = 57;
 	//第一个滑块选择阈值类型
@@ -979,6 +998,80 @@ void hi_opencv20::textDetect()
 
 }
 
+//瑕疵检测
+void hi_opencv20::flawDetect()
+{
+	on_init();
+
+	i = 84;
+
+	ui.slider_1->setMaximum(20);
+	ui.slider_1->setMinimum(0);
+	ui.slider_1->setValue(0);
+	ui.slider_1->show();
+	ui.spinBox_1->show();
+
+	ui.slider_2->setMaximum(20);
+	ui.slider_2->setMinimum(0);
+	ui.slider_2->setValue(0);
+	ui.slider_2->show();
+	ui.spinBox_2->show();
+}
+
+Mat flawDetecting(int size, int area, Mat imgOrigin)
+{
+	RNG rng;
+	Mat imgClose, imgGray;//开运算，灰度图
+	Mat imgDiff;//图片相减
+	//灰度化
+	cvtColor(imgOrigin, imgGray, CV_RGB2GRAY);
+	//阈值化
+	threshold(imgGray, imgGray, 200, 255, 0);
+	imgClose = imgGray.clone();
+	//闭运算
+	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size));
+	cv::morphologyEx(imgClose, imgClose, MORPH_CLOSE, element);
+
+	absdiff(imgGray, imgClose, imgDiff);
+	//threshold(imgDiff, imgDiff, 100, 255, 1);
+
+	vector<Mat> contours;
+	vector<Vec4i> hierarchy;
+	findContours(imgDiff, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	vector<vector<Point> > contours_poly(contours.size());
+	//vector<Rect> boundRect(contours.size());//矩形
+	vector<Point2f>center(contours.size());
+	vector<float>radius(contours.size());
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		approxPolyDP(Mat(contours[i]), contours_poly[i], 3, true);
+		//boundRect[i] = boundingRect(Mat(contours_poly[i]));
+		//float r = radius[i] + 10;
+		//minEnclosingCircle(contours_poly[i], center[i], r);
+		minEnclosingCircle(contours_poly[i], center[i], radius[i]);
+	}
+	//Mat drawing = Mat::zeros(imgDiff.size(), CV_8UC3);
+	Mat drawing = imgOrigin.clone();
+
+	double rr = 0;//半径
+	double aa = 0;//面积
+	drawing = imgOrigin.clone();
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		//rectangle(drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0);
+		rr = radius[i];
+		aa = 3.14*rr*rr;
+		if (aa >= area)
+		{
+			drawContours(drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point());
+			circle(drawing, center[i], (int)radius[i] + 10, color, 2, 8, 0);
+		}
+	}
+	return drawing;
+}
 #pragma endregion
 
 

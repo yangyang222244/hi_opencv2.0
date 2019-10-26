@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 static const unsigned char qt_resource_data[] = {
-  // C:/Users/w/Desktop/??/????? (2)/hi_opencv2.0/hi_opencv2.0/Resources/stylesheet.qss
+  // C:/Users/w/Desktop/vs+qt+opencv/hi_opencv2.0/hi_opencv2.0/Resources/stylesheet.qss
   0x0,0x0,0x3,0x89,
   0x0,
   0x0,0xe,0x40,0x78,0x9c,0xd5,0x56,0xdb,0x8e,0x9b,0x30,0x10,0x7d,0xee,0x4a,0xfb,
