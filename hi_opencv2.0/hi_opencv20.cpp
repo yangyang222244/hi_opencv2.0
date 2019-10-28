@@ -72,6 +72,8 @@ String qstr2str(QString qstr)
 
 void hi_opencv20::open()
 {
+	//ui.toolBox->hide();
+	on_init();
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this, tr("Ñ¡ÔñÍ¼Ïñ"), "", tr("Images(*.png *.bmp *.jpg *.tif *.GIF)"));
 
