@@ -74,6 +74,8 @@ String qstr2str(QString qstr)
 
 void hi_opencv20::open()
 {
+	//ui.toolBox->hide();
+	on_init();
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this, tr("Ñ¡ÔñÍ¼Ïñ"), "", tr("Images(*.png *.bmp *.jpg *.tif *.GIF)"));
 
@@ -1007,13 +1009,13 @@ void hi_opencv20::flawDetect()
 
 	i = 84;
 
-	ui.slider_1->setMaximum(20);
+	ui.slider_1->setMaximum(50);
 	ui.slider_1->setMinimum(0);
 	ui.slider_1->setValue(0);
 	ui.slider_1->show();
 	ui.spinBox_1->show();
 
-	ui.slider_2->setMaximum(20);
+	ui.slider_2->setMaximum(50);
 	ui.slider_2->setMinimum(0);
 	ui.slider_2->setValue(0);
 	ui.slider_2->show();
