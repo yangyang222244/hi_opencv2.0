@@ -40,6 +40,10 @@ hi_opencv20::hi_opencv20(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	QPalette palette(this->palette());
+	palette.setColor(QPalette::Background, Qt::gray);
+	this->setPalette(palette);
+
 	ui.slider_1->hide();
 	ui.slider_2->hide();
 	ui.spinBox_1->hide();
@@ -1111,7 +1115,7 @@ Mat hi_opencv20::flawDetecting(int size, int area, Mat imgOrigin)
 		Point center(sts4[i][0], sts4[i][1]);
 		circle(drawing, center, sts4[i][3] / 2 + 10, color, 2, 8, 0);
 		QString str = "(" + QString::number((int)center.x) + "," + QString::number((int)center.y) + ")\t" + QString::number(sts4[i][2])
-			+ "\t" + QString::number((int)sts4[i][3]);
+			+ "\t" + QString::number(sts4[i][3]);
 		ui.textEdit->append(str);
 	}
 	ui.textEdit->show();
