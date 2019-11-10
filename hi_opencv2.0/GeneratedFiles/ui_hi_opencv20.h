@@ -22,6 +22,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolBox>
 #include <QtWidgets/QVBoxLayout>
@@ -112,6 +113,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QSpinBox *spinBox_2;
     QSlider *slider_2;
+    QTextEdit *textEdit;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -119,6 +121,7 @@ public:
     {
         if (hi_opencv20Class->objectName().isEmpty())
             hi_opencv20Class->setObjectName(QStringLiteral("hi_opencv20Class"));
+        hi_opencv20Class->setEnabled(true);
         hi_opencv20Class->resize(965, 708);
         actionopen = new QAction(hi_opencv20Class);
         actionopen->setObjectName(QStringLiteral("actionopen"));
@@ -337,7 +340,7 @@ public:
         input->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 358, 502));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 295, 502));
         input->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(input);
@@ -352,7 +355,7 @@ public:
         output->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 357, 502));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 294, 502));
         output->setWidget(scrollAreaWidgetContents_2);
 
         horizontalLayout->addWidget(output);
@@ -433,6 +436,22 @@ public:
 
         horizontalLayout_2->addLayout(verticalLayout_2);
 
+        textEdit = new QTextEdit(centralWidget);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setEnabled(true);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy);
+        textEdit->setMinimumSize(QSize(120, 120));
+        textEdit->setMaximumSize(QSize(120, 200));
+        textEdit->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        textEdit->setReadOnly(true);
+        textEdit->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
+        horizontalLayout_2->addWidget(textEdit);
+
         hi_opencv20Class->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(hi_opencv20Class);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -494,7 +513,7 @@ public:
         QObject::connect(btnTextDetection, SIGNAL(clicked()), hi_opencv20Class, SLOT(textDetect()));
         QObject::connect(bntFlawDetect, SIGNAL(clicked()), hi_opencv20Class, SLOT(flawDetect()));
 
-        toolBox->setCurrentIndex(7);
+        toolBox->setCurrentIndex(8);
 
 
         QMetaObject::connectSlotsByName(hi_opencv20Class);

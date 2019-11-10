@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>hi_opencv20Class</class>
  <widget class="QMainWindow" name="hi_opencv20Class">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,13 +22,13 @@
      <widget class="QToolBox" name="toolBox">
       <property name="minimumSize">
        <size>
-        <width>180</width>
+        <width>130</width>
         <height>450</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>180</width>
+        <width>130</width>
         <height>450</height>
        </size>
       </property>
@@ -40,7 +43,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -55,7 +58,7 @@
          <rect>
           <x>0</x>
           <y>10</y>
-          <width>181</width>
+          <width>131</width>
           <height>171</height>
          </rect>
         </property>
@@ -96,7 +99,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -108,7 +111,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -121,7 +124,7 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -134,7 +137,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -147,7 +150,7 @@
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -160,7 +163,7 @@
          <rect>
           <x>0</x>
           <y>120</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -173,7 +176,7 @@
          <rect>
           <x>0</x>
           <y>150</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -186,7 +189,7 @@
          <rect>
           <x>0</x>
           <y>180</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -200,7 +203,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -212,7 +215,7 @@
          <rect>
           <x>0</x>
           <y>20</y>
-          <width>181</width>
+          <width>121</width>
           <height>28</height>
          </rect>
         </property>
@@ -225,7 +228,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>28</height>
          </rect>
         </property>
@@ -238,7 +241,7 @@
          <rect>
           <x>0</x>
           <y>100</y>
-          <width>181</width>
+          <width>121</width>
           <height>28</height>
          </rect>
         </property>
@@ -252,7 +255,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -264,7 +267,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -277,7 +280,7 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -290,7 +293,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -303,7 +306,7 @@
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -316,7 +319,7 @@
          <rect>
           <x>0</x>
           <y>120</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -330,7 +333,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -342,7 +345,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -355,7 +358,7 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -368,7 +371,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -381,7 +384,7 @@
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -394,7 +397,7 @@
          <rect>
           <x>0</x>
           <y>120</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -407,7 +410,7 @@
          <rect>
           <x>0</x>
           <y>150</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -421,7 +424,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -433,7 +436,7 @@
          <rect>
           <x>0</x>
           <y>20</y>
-          <width>181</width>
+          <width>131</width>
           <height>23</height>
          </rect>
         </property>
@@ -446,7 +449,7 @@
          <rect>
           <x>0</x>
           <y>70</y>
-          <width>181</width>
+          <width>131</width>
           <height>23</height>
          </rect>
         </property>
@@ -459,7 +462,7 @@
          <rect>
           <x>0</x>
           <y>130</y>
-          <width>181</width>
+          <width>131</width>
           <height>23</height>
          </rect>
         </property>
@@ -473,7 +476,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -485,7 +488,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -498,7 +501,7 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -511,7 +514,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -524,7 +527,7 @@
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -537,7 +540,7 @@
          <rect>
           <x>0</x>
           <y>120</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -550,7 +553,7 @@
          <rect>
           <x>0</x>
           <y>150</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -563,7 +566,7 @@
          <rect>
           <x>0</x>
           <y>180</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -577,7 +580,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -589,7 +592,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -602,7 +605,7 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -615,7 +618,7 @@
          <rect>
           <x>0</x>
           <y>60</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -628,7 +631,7 @@
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>181</width>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
@@ -642,7 +645,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>180</width>
+         <width>130</width>
          <height>216</height>
         </rect>
        </property>
@@ -676,7 +679,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>358</width>
+              <width>305</width>
               <height>502</height>
              </rect>
             </property>
@@ -712,7 +715,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>357</width>
+              <width>304</width>
               <height>502</height>
              </rect>
             </property>
@@ -860,6 +863,40 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>1000</height>
+       </size>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

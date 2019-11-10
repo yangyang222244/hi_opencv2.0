@@ -100,10 +100,11 @@ private slots:
 	
 
 	void on_init();
+	
 
 
 private:
-
+	Mat flawDetecting(int size, int area, Mat imgOringin);
 
 	Ui::hi_opencv20Class ui;
 	Mat image;//显示在第一个框
