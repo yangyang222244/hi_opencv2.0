@@ -671,16 +671,16 @@ void hi_opencv20::on_Sobel() {
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-	m_Sobel(i_by,image,image1,label_2,ui);
+	m_Sobel(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_Laplace() {
 	i = 52;
 	i_by = 3;
 	ui.slider_1->setMinimum(1);
-	ui.slider_1->setMaximum(50);
+	ui.slider_1->setMaximum(30);
 	ui.slider_1->setValue(1);
 	ui.slider_1->show();
-    m_Laplace(i_by,image,image1,label_2,ui);
+	m_Laplace(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_Canny() {
 	i = 53;
@@ -697,7 +697,7 @@ void hi_opencv20::on_HoughLines() {
 	ui.slider_1->setMinimum(1);
 	ui.slider_1->setMaximum(50);
 	ui.slider_1->setValue(1);
-	ui.slider_1->hide();
+	ui.slider_1->show();
 	m_HoughLines(i_by, image, image1, label_2, ui);
 }
 void hi_opencv20::on_HoughCircles() {
@@ -744,8 +744,8 @@ void m_Sobel(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Clas
 }
 void m_Laplace(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui) {
 	Mat src, src_gray, dst;
-	int kernel_size = 3;
-	int scale = by;
+	int kernel_size = by * 2 - 1;
+	int scale = 1;
 	int delta = 0;
 	int ddepth = CV_16S;
 	int c;
@@ -800,7 +800,7 @@ void m_HoughLines(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv2
 	Canny(src_gray, dst, by, 200, 3);
 	cvtColor(dst, cdst, COLOR_GRAY2BGR);
 	vector<Vec4i> lines;
-	HoughLinesP(dst, lines, 1, CV_PI / 180, 50, 50, 10);
+	HoughLinesP(dst, lines, 1, CV_PI / 180, by, 10, 10);
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		Vec4i l = lines[i];
@@ -824,7 +824,7 @@ void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_openc
 	vector<Vec3f> circles;
 
 	/// Apply the Hough Transform to find the circles
-	HoughCircles(src_gray, circles, HOUGH_GRADIENT, 1, src_gray.rows / 8, by, 100, 0, 0);
+	HoughCircles(src_gray, circles, HOUGH_GRADIENT, 1, src_gray.rows / 8, 200, 100, 0, 0);
 
 	for (int ii = 0; ii < circles.size(); ii++)
 	{
@@ -835,7 +835,7 @@ void m_HoughCircles(int by, Mat image, Mat image1, QLabel *label_2, Ui::hi_openc
 		// circle outline
 		circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
 	}
-	
+
 	image1 = src.clone();
 	QImage img = QImage((const unsigned char*)(image1.data), image1.cols, image1.rows, image1.cols*image1.channels(), QImage::Format_RGB888);
 	label_2 = new QLabel();
