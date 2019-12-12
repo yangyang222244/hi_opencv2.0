@@ -1,5 +1,6 @@
 
 #include "opencv2/text.hpp"
+#include "opencv2/features2d.hpp"
 
 #include  "opencv2/highgui.hpp"
 #include  "opencv2/imgproc.hpp"
@@ -11,6 +12,7 @@
 using namespace std;
 using namespace cv;
 using namespace cv::text;
+
 
 
 #pragma region //函数声明by WFL
@@ -30,13 +32,17 @@ void w_rectcircle(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20
 void w_fitEllipse(int j, Mat image, Mat image1, QLabel *label_2, Ui::hi_opencv20Class ui);
 
 //函数声明
-Mat flawDetecting(int size, int area, Mat imgOringin);
+//Mat hi_opencv20::flawDetecting(int size, int area, Mat imgOringin);
 
 
 hi_opencv20::hi_opencv20(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
+	QPalette palette(this->palette());
+	palette.setColor(QPalette::Background, Qt::gray);
+	this->setPalette(palette);
 
 	ui.slider_1->hide();
 	ui.slider_2->hide();
@@ -72,6 +78,8 @@ String qstr2str(QString qstr)
 
 void hi_opencv20::open()
 {
+	//ui.toolBox->hide();
+	on_init();
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this, tr("选择图像"), "", tr("Images(*.png *.bmp *.jpg *.tif *.GIF)"));
 
@@ -1005,20 +1013,20 @@ void hi_opencv20::flawDetect()
 
 	i = 84;
 
-	ui.slider_1->setMaximum(20);
+	ui.slider_1->setMaximum(50);
 	ui.slider_1->setMinimum(0);
 	ui.slider_1->setValue(0);
 	ui.slider_1->show();
 	ui.spinBox_1->show();
 
-	ui.slider_2->setMaximum(20);
+	ui.slider_2->setMaximum(50);
 	ui.slider_2->setMinimum(0);
 	ui.slider_2->setValue(0);
 	ui.slider_2->show();
 	ui.spinBox_2->show();
 }
 
-Mat flawDetecting(int size, int area, Mat imgOrigin)
+Mat hi_opencv20::flawDetecting(int size, int area, Mat imgOrigin)
 {
 	RNG rng;
 	Mat imgClose, imgGray;//开运算，灰度图
@@ -1035,6 +1043,83 @@ Mat flawDetecting(int size, int area, Mat imgOrigin)
 	absdiff(imgGray, imgClose, imgDiff);
 	//threshold(imgDiff, imgDiff, 100, 255, 1);
 
+	vector < vector<Point> > contours;    //定义二值图像的斑点的边界像素变量
+	Mat tmpBinaryImage = imgDiff.clone();    //复制二值图像
+	//调用findContours函数，找到当前二值图像的所有斑点的边界
+	findContours(tmpBinaryImage, contours, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+	vector<vector<double>> sts4;
+	for (size_t contourIdx = 0; contourIdx < contours.size(); contourIdx++)
+	{
+		Moments moms = moments(Mat(contours[contourIdx]));
+		vector<double> temp;
+		double aa = moms.m00;    //零阶矩即为二值图像的面积
+								 //如果面积超出了设定的范围，则不再考虑该斑点
+		if (aa<=area)
+			continue;
+		//double area = moms.m00;    //得到斑点的面积
+		//计算斑点的周长
+		double perimeter = arcLength(Mat(contours[contourIdx]), true);
+		//由公式3得到斑点的圆度
+		double ratio = 4 * CV_PI * aa / (perimeter * perimeter);
+		//如果圆度小于了设定的范围，则不再考虑该斑点
+		if (ratio < 0.3)
+			continue;
+
+		double locX = moms.m10 / moms.m00;
+		double locY = moms.m01 / moms.m00;
+		temp.push_back(locX);
+		temp.push_back(locY);
+		temp.push_back(aa);
+		Point2d location;
+		location.x = locX;
+		location.y = locY;
+		vector<double> dists;    //定义距离队列
+			//遍历该斑点边界上的所有像素
+		for (size_t pointIdx = 0; pointIdx < contours[contourIdx].size(); pointIdx++)
+		{
+			Point2d pt = contours[contourIdx][pointIdx];    //得到边界像素坐标
+			//计算该点坐标与斑点中心的距离，并放入距离队列中
+			dists.push_back(norm(location - pt));
+		}
+		std::sort(dists.begin(), dists.end());    //距离队列排序
+		//计算斑点的半径，它等于距离队列中中间两个距离的平均值
+		temp.push_back((dists[(dists.size() - 1) / 2] + dists[dists.size() / 2]) / 2.);
+		sts4.push_back(temp);
+	}
+	/*
+	Mat imgTest = imgDiff.clone();
+	SimpleBlobDetector::Params params;
+	params.minDistBetweenBlobs = 0.0f;
+	params.filterByInertia = false;
+	params.filterByConvexity = false;
+	params.filterByColor = false;
+	//params.filterByCircularity = false;
+	//params.filterByArea = false;
+	params.filterByArea = true;
+	params.minArea = area;
+	params.filterByCircularity = true;
+	params.minCircularity = 0.2;
+	params.maxCircularity = 1.0;
+	// 参数初始化BLOB检测器，
+	Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+	vector<KeyPoint> keypoints;
+	// 检测得到特征与绘制特征
+	detector->detect(imgTest, keypoints, Mat());
+	*/
+	Mat drawing = imgOrigin.clone();
+	ui.textEdit->clear();
+	//drawKeypoints(drawing, keypoints, drawing, Scalar(0, 0, 255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+	for (int i = 0; i < sts4.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		Point center(sts4[i][0], sts4[i][1]);
+		circle(drawing, center, sts4[i][3] / 2 + 10, color, 2, 8, 0);
+		QString str = "(" + QString::number((int)center.x) + "," + QString::number((int)center.y) + ")\t" + QString::number(sts4[i][2])
+			+ "\t" + QString::number(sts4[i][3]);
+		ui.textEdit->append(str);
+	}
+	ui.textEdit->show();
+	/*
 	vector<Mat> contours;
 	vector<Vec4i> hierarchy;
 	findContours(imgDiff, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
@@ -1070,6 +1155,7 @@ Mat flawDetecting(int size, int area, Mat imgOrigin)
 			circle(drawing, center[i], (int)radius[i] + 10, color, 2, 8, 0);
 		}
 	}
+	*/
 	return drawing;
 }
 #pragma endregion
@@ -1569,6 +1655,7 @@ void hi_opencv20::on_init()
 	ui.slider_2->hide();
 	ui.spinBox_1->hide();
 	ui.spinBox_2->hide();
+	ui.textEdit->hide();
 	i = -1;
 
 	/*
